@@ -1,0 +1,7 @@
+#!/bin/bash
+
+ssh-agent -k
+ssh-agent > /tmp/ssh-agent.out
+source /tmp/ssh-agent.out
+ssh-add
+zsh -i

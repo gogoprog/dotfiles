@@ -1,0 +1,10 @@
+#!/bin/zsh
+
+export PATH=/home/gogoprog/Android/Sdk:$PATH
+export PATH=/home/gogoprog/Android/Sdk/tools:$PATH
+export PATH=/home/gogoprog/Android/Sdk/platform-tools:$PATH
+virtualenv2 /tmp/py2
+source /tmp/py2/bin/activate
+zsh -i
+
+

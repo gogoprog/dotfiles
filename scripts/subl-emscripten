@@ -1,0 +1,9 @@
+#!/bin/bash
+
+cd ~/code/emsdk_portable
+
+source ./emsdk_env.sh
+
+subl3
+
+

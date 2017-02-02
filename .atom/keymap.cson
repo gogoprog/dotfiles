@@ -1,0 +1,28 @@
+'.platform-linux atom-text-editor':
+  'f12': 'atomic-rtags:follow'
+
+'.platform-linux atom-workspace, .platform-win32 atom-workspace':
+  'f4': 'build:error-match'
+  'f12': 'atomic-rtags:follow'
+
+'.platform-win32, .platform-linux':
+  'ctrl-F': 'project-find:show'
+  'ctrl-f': 'find-and-replace:show'
+  'ctrl-alt-f': 'find-and-replace:show-replace'
+  'alt-g': 'symbols-view:go-to-declaration'
+  'f12': 'atomic-rtags:follow'
+
+'.platform-win32 atom-text-editor, .platform-linux atom-text-editor':
+  'shift-f3': 'find-and-replace:find-previous'
+  'f3': 'find-and-replace:find-next'
+  'ctrl-d': 'find-and-replace:select-next'
+  'ctrl-e': 'find-and-replace:use-selection-as-find-pattern'
+  'ctrl-u': 'find-and-replace:select-undo'
+  'f12': 'atomic-rtags:follow'
+
+'atom-workspace atom-text-editor':
+  'ctrl-f3': 'find-and-replace:find-next-selected'
+  'f12': 'atomic-rtags:follow'
+
+'atom-text-editor:not(.mini)':
+  'f4': 'linter:next-error'

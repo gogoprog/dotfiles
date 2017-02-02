@@ -1,0 +1,21 @@
+Xft.dpi: 96
+Xft.antialias: 1
+Xft.rgba: rgb
+
+urxvt*transparent:true
+urxvt*shading:40
+urxvt*background:Black
+
+urxvt*foreground: White
+urxvt*geometry: 80x24
+urxvt*cursorBlink: true
+urxvt*cursorColor: #5eff24
+urxvt*saveLines: 20000
+urxvt*scrollBar:         false
+
+! Extensions
+urxvt*urlLauncher:     /usr/bin/chromium
+urxvt.url-launcher:      /usr/bin/firefox
+urxvt.matcher.button:   1
+
+urxvt*font: xft:Monaco:pixelsize=13

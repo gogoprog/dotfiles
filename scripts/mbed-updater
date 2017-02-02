@@ -1,0 +1,10 @@
+#!/bin/bash
+
+MBED="/run/media/gogoprog/MBED"
+BIN_LOCATION="/home/gogoprog/Downloads"
+
+while [ true ]
+do
+    stat -t ${BIN_LOCATION}/*.bin >/dev/null 2>&1 && mv ${BIN_LOCATION}/*.bin ${MBED}/ && echo -n "Bin updated @ " && date
+    sleep 1
+done
