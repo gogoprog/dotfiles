@@ -1,0 +1,20 @@
+# For the benefit of emacs users: -*- shell-script -*-
+###########################
+# xbindkeys configuration #
+###########################
+
+# Increase volume
+"pamixer --increase 5"
+   XF86AudioRaiseVolume
+
+# Decrease volume
+"pamixer --decrease 5"
+   XF86AudioLowerVolume
+
+#screenshot
+"maim -s"
+   m:0x0 + c:107
+
+##################################
+# End of xbindkeys configuration #
+##################################
