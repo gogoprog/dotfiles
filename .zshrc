@@ -35,6 +35,7 @@ source $ZSH/oh-my-zsh.sh
 
 # Customize to your needs...
 export PATH="$PATH:$HOME/scripts:$HOME/code/scripts"
+export UNITY=/opt/Unity
 
 PROMPT='%{%f%k%b%}
 %{%B%F{green}%}%n%{%B%F{blue}%}@%{%B%F{cyan}%}%m%{%B%F{green}%} %{%b%F{yellow}%}%~%{%B%F{green}%}$(git_prompt_info)%{%f%k%b%}
