@@ -103,14 +103,14 @@ local mytextdate = wibox.widget.textclock("%d-%m-%y")
 mytextdate.font = theme.font
 
 -- Calendar
-lain.widgets.calendar({
+--[[lain.widgets.calendar({
     attach_to = { mytextdate },
     notification_preset = {
         font = theme.font,
         fg   = theme.fg_normal,
         bg   = theme.bg_normal
     }
-})
+})]]
 
 --[[ Mail IMAP check
 -- commented because it needs to be set before use
