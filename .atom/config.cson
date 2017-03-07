@@ -1,16 +1,15 @@
 "*":
   "atom-gdb": {}
   build:
-    panelVisibility: "Keep Visible"
     saveOnBuild: true
   core:
+    autoHideMenuBar: true
     customFileTypes:
       "source.cpp": [
         "h"
       ]
     disabledPackages: [
       "autocomplete-clang"
-      "open-on-github"
       "git-diff"
       "activate-power-mode"
     ]
@@ -20,7 +19,6 @@
       "solarized-dark-syntax"
     ]
   editor:
-    fontSize: 13
     invisibles: {}
     showInvisibles: true
     softWrap: true
@@ -28,7 +26,10 @@
   "exception-reporting":
     userId: "43be3f37-4645-210a-01a1-c24558189fc2"
   lime:
-    command_line_extra: "-Dlocal"
+    command_line_extra: "-Dlocal -Dprofile"
+  "omnisharp-atom":
+    codeFormat: false
+    codeLens: false
   tabs: {}
   welcome:
     showOnStartup: false

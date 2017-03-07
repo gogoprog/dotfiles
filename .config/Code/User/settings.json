@@ -1,0 +1,8 @@
+// Place your settings in this file to overwrite the default settings
+{
+    "editor.renderWhitespace": "all",
+    "git.enabled": false,
+    "editor.fontFamily": "Inconsolata, Monaco, Consolas, 'Courier New', Courier",
+    "workbench.colorTheme": "Solarized Dark",
+    "editor.codeLens": false
+}
