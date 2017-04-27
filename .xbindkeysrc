@@ -12,7 +12,7 @@
    XF86AudioLowerVolume
 
 #screenshot
-"maim -s"
+"maim -s /tmp/screenshot.png"
    m:0x0 + c:107
 
 ##################################
