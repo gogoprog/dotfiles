@@ -158,6 +158,7 @@ theme.mpd = lain.widgets.mpd({
 })
 
 -- Battery
+--[[
 local baticon = wibox.widget.imagebox(theme.bat)
 local batbar = wibox.widget {
     forced_height    = 1,
@@ -204,8 +205,10 @@ local batupd = lain.widgets.bat({
 })
 local batbg = wibox.container.background(batbar, "#474747", gears.shape.rectangle)
 local batwidget = wibox.container.margin(batbg, 2, 7, 4, 4)
+]]
 
 -- /home fs
+--[[
 local fsicon = wibox.widget.imagebox(theme.disk)
 local fsbar = wibox.widget {
     forced_height    = 1,
@@ -233,7 +236,7 @@ theme.fs = lain.widgets.fs({
 })
 local fsbg = wibox.container.background(fsbar, "#474747", gears.shape.rectangle)
 local fswidget = wibox.container.margin(fsbg, 2, 7, 4, 4)
-
+]]
 -- ALSA volume bar
 local volicon = wibox.widget.imagebox(theme.vol)
 theme.volume = lain.widgets.alsabar({
@@ -348,12 +351,12 @@ function theme.at_screen_connect(s)
             --mail.widget,
             --mpdicon,
             --theme.mpd.widget,
-            baticon,
-            batwidget,
-            bar_spr,
-            fsicon,
-            fswidget,
-            bar_spr,
+            --baticon,
+            --batwidget,
+            --bar_spr,
+            --fsicon,
+            --fswidget,
+            --bar_spr,
             volicon,
             volumewidget,
             bar_spr,
