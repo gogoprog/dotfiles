@@ -9,11 +9,24 @@
     "editor.fontSize": 13,
     "terminal.integrated.fontSize": 10,
     "window.zoomLevel": 0,
-    "[cpp]": {
-        "editor.quickSuggestions": false
-    },
-    "[c]": {
-        "editor.quickSuggestions": false
-    },
-    "java.errors.incompleteClasspath.severity": "ignore"
+    "java.errors.incompleteClasspath.severity": "ignore",
+    "vim.disableAnnoyingNeovimMessage": true,
+    "vim.otherModesKeyBindingsNonRecursive": [
+        {
+            "before": ["h"],
+            "after": ["i"]
+        },
+        {
+            "before": ["i"],
+            "after": ["k"]
+        },
+        {
+            "before": ["j"],
+            "after": ["h"]
+        },
+        {
+            "before": ["k"],
+            "after": ["j"]
+        }
+    ]
 }
