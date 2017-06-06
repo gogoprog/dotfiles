@@ -27,6 +27,12 @@
         {
             "before": ["k"],
             "after": ["j"]
+        },
+        {
+            "before": ["Space"],
+            "after": ["i"]
         }
-    ]
+    ],
+    "vim.useCtrlKeys": false,
+    "vim.disableAnnoyingGcMessage": true
 }
