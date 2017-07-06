@@ -35,5 +35,7 @@
     ],
     "vim.useCtrlKeys": false,
     "vim.disableAnnoyingGcMessage": true,
-    "vim.easymotion": true
+    "vim.easymotion": true,
+    "workbench.editor.enablePreview": false,
+    "workbench.editor.enablePreviewFromQuickOpen": false
 }
