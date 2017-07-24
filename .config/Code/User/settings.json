@@ -37,5 +37,6 @@
     "vim.disableAnnoyingGcMessage": true,
     "vim.easymotion": true,
     "workbench.editor.enablePreview": false,
-    "workbench.editor.enablePreviewFromQuickOpen": false
+    "workbench.editor.enablePreviewFromQuickOpen": false,
+    "vim.visualstar": true
 }
