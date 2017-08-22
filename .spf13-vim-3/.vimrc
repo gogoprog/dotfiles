@@ -1259,3 +1259,8 @@ map j <Left>
 map k <Down>
 map <Space> <insert>
 
+nnoremap <c-s> :w<CR>
+inoremap <c-s> <Esc>:w<CR>l
+vnoremap <c-s> <Esc>:w<CR>
+
+
