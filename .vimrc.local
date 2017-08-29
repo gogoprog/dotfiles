@@ -16,3 +16,5 @@ let &t_EI = "\<Esc>[2 q"
 
 set secure exrc
 
+map f <Plug>(easymotion-bd-w)
+
