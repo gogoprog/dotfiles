@@ -17,7 +17,7 @@ let &t_EI = "\<Esc>[2 q"
 set secure exrc
 
 map f <Plug>(easymotion-bd-w)
-map <c-f> :Ack 
+map <c-f> :Ack! 
 nmap <silent> <c-i> :wincmd k<CR>
 nmap <silent> <c-k> :wincmd j<CR>
 nmap <silent> <c-j> :wincmd h<CR>
