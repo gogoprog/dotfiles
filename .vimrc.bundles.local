@@ -1,2 +1,4 @@
 Plugin 'jdonaldson/vaxe'
+Plugin 'OmniSharp/omnisharp-vim'
+Plugin 'tpope/vim-dispatch'
 
