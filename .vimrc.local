@@ -24,10 +24,10 @@ set secure exrc
 
 map f <Plug>(easymotion-bd-w)
 map <c-f> :Ack! 
+unmap <c-i>
 nmap <silent> <c-i> :wincmd k<CR>
 nmap <silent> <c-k> :wincmd j<CR>
 nmap <silent> <c-j> :wincmd h<CR>
 nmap <silent> <c-l> :wincmd l<CR>
 noremap <F12> :OmniSharpGotoDefinition<CR>
-unmap <c-i>
 
