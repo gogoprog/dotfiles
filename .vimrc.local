@@ -1,6 +1,9 @@
 
 let g:ctrlp_working_path_mode = ''
 let g:ctrlp_user_command = 'find %s -type f -not -path "*/.git/*" -not -path "*.meta" -not -path "*/metadata/*"'
+set autoread
+au CursorHold,CursorHoldI * checktime
+set updatetime=1000
 
 " remap h to insert and use ijkl for inverse T cursor movement
 map h <insert>
@@ -26,5 +29,5 @@ nmap <silent> <c-k> :wincmd j<CR>
 nmap <silent> <c-j> :wincmd h<CR>
 nmap <silent> <c-l> :wincmd l<CR>
 noremap <F12> :OmniSharpGotoDefinition<CR>
-
+unmap <c-i>
 
