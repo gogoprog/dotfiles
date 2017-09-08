@@ -18,4 +18,4 @@ urxvt*urlLauncher:     /usr/bin/chromium
 urxvt.url-launcher:      /usr/bin/firefox
 urxvt.matcher.button:   1
 
-urxvt*font: xft:Monaco:pixelsize=13
+urxvt*font: xft:Monaco:pixelsize=11
