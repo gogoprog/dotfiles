@@ -1,6 +1,6 @@
 
-let g:ctrlp_working_path_mode = ''
-let g:ctrlp_user_command = 'find %s -type f -not -path "*/.git/*" -not -path "*.meta" -not -path "*/metadata/*"'
+let project_root = getcwd()
+let g:ctrlp_user_command = 'echo %s && cd ' . project_root . ' && find . -type f -not -path "*/.git/*" -not -path "*.meta" -not -path "*/metadata/*"'
 set autoread
 au CursorHold,CursorHoldI * checktime
 set updatetime=1000
