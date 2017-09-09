@@ -29,5 +29,5 @@ nmap <silent> <c-i> :wincmd k<CR>
 nmap <silent> <c-k> :wincmd j<CR>
 nmap <silent> <c-j> :wincmd h<CR>
 nmap <silent> <c-l> :wincmd l<CR>
-noremap <F12> :OmniSharpGotoDefinition<CR>
+autocmd FileType cs nnoremap <buffer> <C-]> :OmniSharpGotoDefinition<CR>
 
