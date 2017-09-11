@@ -22,7 +22,7 @@ let &t_EI = "\<Esc>[2 q"
 
 set secure exrc
 
-noremap f <Plug>(easymotion-bd-w)
+map f <Plug>(easymotion-bd-w)
 noremap <c-f> :Ack! 
 noremap <c-h> <c-i>
 nnoremap <silent> <c-i> :wincmd k<CR>
