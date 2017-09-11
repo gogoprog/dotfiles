@@ -1,16 +1,16 @@
 
 let project_root = getcwd()
-let g:ctrlp_user_command = 'echo %s && cd ' . project_root . ' && find . -type f -not -path "*/.git/*" -not -path "*.meta" -not -path "*/metadata/*"'
+let g:ctrlp_user_command = 'echo %s && cd ' . project_root . ' && find -L . -type f -not -path "*/.git/*" -not -path "*.meta" -not -path "*/metadata/*"'
 set autoread
 au CursorHold,CursorHoldI * checktime
 set updatetime=1000
 
 " remap h to insert and use ijkl for inverse T cursor movement
-map h <insert>
-map i <Up>
-map j <Left>
-map k <Down>
-map <Space> <insert>
+noremap h <insert>
+noremap i <Up>
+noremap j <Left>
+noremap k <Down>
+noremap <Space> <insert>
 
 nnoremap <c-s> :w<CR>
 inoremap <c-s> <Esc>:w<CR>l
@@ -22,12 +22,12 @@ let &t_EI = "\<Esc>[2 q"
 
 set secure exrc
 
-map f <Plug>(easymotion-bd-w)
-map <c-f> :Ack! 
-unmap <c-i>
-nmap <silent> <c-i> :wincmd k<CR>
-nmap <silent> <c-k> :wincmd j<CR>
-nmap <silent> <c-j> :wincmd h<CR>
-nmap <silent> <c-l> :wincmd l<CR>
+noremap f <Plug>(easymotion-bd-w)
+noremap <c-f> :Ack! 
+noremap <c-h> <c-i>
+nnoremap <silent> <c-i> :wincmd k<CR>
+nnoremap <silent> <c-k> :wincmd j<CR>
+nnoremap <silent> <c-j> :wincmd h<CR>
+nnoremap <silent> <c-l> :wincmd l<CR>
 autocmd FileType cs nnoremap <buffer> <C-]> :OmniSharpGotoDefinition<CR>
 
