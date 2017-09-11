@@ -24,6 +24,7 @@ set secure exrc
 
 map f <Plug>(easymotion-bd-w)
 noremap <c-f> :Ack! 
+unmap <c-h>
 noremap <c-h> <c-i>
 nnoremap <silent> <c-i> :wincmd k<CR>
 nnoremap <silent> <c-k> :wincmd j<CR>
