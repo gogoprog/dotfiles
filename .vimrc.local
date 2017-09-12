@@ -30,8 +30,8 @@ unmap <c-h>
 noremap <c-h> <c-i>
 nnoremap <silent> <c-i> :wincmd k<CR>
 nnoremap <silent> <c-k> :wincmd j<CR>
-nnoremap <silent> <c-j> :wincmd h<CR>
-nnoremap <silent> <c-l> :wincmd l<CR>
+nnoremap <silent> <c-j> :bp<CR>
+nnoremap <silent> <c-l> :bn<CR>
 autocmd FileType cs nnoremap <buffer> <C-]> :OmniSharpGotoDefinition<CR>
 
 
