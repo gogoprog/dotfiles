@@ -1,6 +1,8 @@
 
 let project_root = getcwd()
-let g:ctrlp_user_command = 'echo %s && cd ' . project_root . ' && find -L . -type f -not -path "*/.git/*" -not -path "*.meta" -not -path "*/metadata/*"'
+let $PROJECT_ROOT = getcwd()
+let g:ctrlp_working_path_mode = 0
+let g:ctrlp_user_command = 'echo %s && find -L ' . project_root . ' -type f -not -path "*/.git/*" -not -path "*.meta" -not -path "*/metadata/*"'
 set autoread
 au CursorHold,CursorHoldI * checktime
 set updatetime=1000
