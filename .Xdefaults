@@ -15,7 +15,13 @@ urxvt*scrollBar:         false
 
 ! Extensions
 urxvt*urlLauncher:     /usr/bin/chromium
-urxvt.url-launcher:      /usr/bin/firefox
+urxvt.url-launcher:      /usr/bin/chromium
 urxvt.matcher.button:   1
 
 urxvt*font: xft:Monaco:pixelsize=11
+
+urxvt.keysym.C-Tab: \033{
+urxvt.keysym.Control-i: \033}
+!urxvt.keysym.Control-Shift-ISO_Left_Tab: \033}
+urxvt*iso14755: False
+urxvt*iso14755_52: False

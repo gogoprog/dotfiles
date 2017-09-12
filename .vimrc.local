@@ -28,6 +28,7 @@ map f <Plug>(easymotion-bd-w)
 noremap <c-f> :Ack! 
 unmap <c-h>
 noremap <c-h> <c-i>
+noremap <silent> { :wincmd w<CR>
 nnoremap <silent> <c-i> :wincmd k<CR>
 nnoremap <silent> <c-k> :wincmd j<CR>
 nnoremap <silent> <c-j> :bp<CR>
