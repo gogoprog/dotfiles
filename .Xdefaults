@@ -1,4 +1,8 @@
-Xft.dpi: 96
+Xft.dpi: 92
+Xft.autohint: 0
+Xft.lcdfilter: lcddefault
+Xft.hintstyle: hintslight
+Xft.hinting: 1
 Xft.antialias: 1
 Xft.rgba: rgb
 
@@ -22,6 +26,6 @@ urxvt*font: xft:Monaco:pixelsize=11
 
 urxvt.keysym.C-Tab: \033{
 !urxvt.keysym.Control-i: \033}
-urxvt.keysym.Control-Shift-ISO_Left_Tab: \033}
+urxvt.keysym.Shift-ISO_Left_Tab: \033}
 urxvt*iso14755: False
 urxvt*iso14755_52: False

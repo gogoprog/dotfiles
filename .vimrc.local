@@ -47,3 +47,7 @@ endfunction
 
 let g:ackprg = 'ag --nogroup --nocolor --column --smart-case -f'
 
+map  :Commentary<CR>
+xmap <C-I> >
+xmap } <
+
