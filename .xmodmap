@@ -3,4 +3,6 @@ keysym j = j J Left
 keysym l = l L Right
 keysym i = i I Up
 keysym k = k K Down
+keycode 108 = Meta_L
+
 
