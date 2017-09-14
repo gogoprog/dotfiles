@@ -35,7 +35,6 @@ nnoremap <silent> <c-j> :bp<CR>
 nnoremap <silent> <c-l> :bn<CR>
 autocmd FileType cs nnoremap <buffer> <C-]> :OmniSharpGotoDefinition<CR>
 
-
 function! Multiple_cursors_before()
     exe 'NeoCompleteLock'
     echo 'Disabled autocomplete'
@@ -45,4 +44,6 @@ function! Multiple_cursors_after()
     exe 'NeoCompleteUnlock'
     echo 'Enabled autocomplete'
 endfunction
+
+let g:ackprg = 'ag --nogroup --nocolor --column --smart-case -f'
 
