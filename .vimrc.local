@@ -2,7 +2,7 @@
 let project_root = getcwd()
 let $PROJECT_ROOT = getcwd()
 let g:ctrlp_working_path_mode = 0
-let g:ctrlp_user_command = 'echo %s && find -L ' . project_root . ' -type f -not -path "*/.git/*" -not -path "*.meta" -not -path "*/metadata/*"'
+let g:ctrlp_user_command = 'find -L %s -type f -not -path "*/.git/*" -not -path "*.meta" -not -path "*/metadata/*"'
 set autoread
 au CursorHold,CursorHoldI * checktime
 set updatetime=1000
@@ -25,7 +25,9 @@ let &t_EI = "\<Esc>[2 q"
 set secure exrc
 
 map f <Plug>(easymotion-bd-w)
-noremap <c-f> :Ack! 
+noremap <c-f> :cd $PROJECT_ROOT <bar> Ack! 
+let g:ctrlp_map = 0
+map <C-P> :cd $PROJECT_ROOT <bar> :CtrlP<CR>
 unmap <c-h>
 noremap <c-h> <c-i>
 noremap <silent> { :wincmd w<CR>
