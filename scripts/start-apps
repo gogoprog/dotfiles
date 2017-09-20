@@ -1,6 +1,10 @@
 #!/bin/bash
 
-pidgin &
+
+pushd ~/code/
+urxvt -e screen weechat &
+popd
+
 chromium &
 slack &
 
