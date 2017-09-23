@@ -25,7 +25,8 @@ let &t_EI = "\<Esc>[2 q"
 set secure exrc
 
 map f <Plug>(easymotion-bd-w)
-noremap <c-f> :cd $PROJECT_ROOT <bar> Ack! 
+noremap F :cd $PROJECT_ROOT <bar> Ack! 
+noremap <c-f> /
 let g:ctrlp_map = 0
 map <C-P> :cd $PROJECT_ROOT <bar> :CtrlP<CR>
 unmap <c-h>
