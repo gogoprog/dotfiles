@@ -25,7 +25,7 @@ let &t_EI = "\<Esc>[2 q"
 set secure exrc
 
 map f <Plug>(easymotion-bd-w)
-noremap F :cd $PROJECT_ROOT <bar> Ack! 
+map ] :cd $PROJECT_ROOT <bar> Ack! 
 noremap <c-f> /
 noremap E :NERDTreeFind<CR>
 let g:ctrlp_map = 0
