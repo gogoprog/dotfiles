@@ -1,0 +1,13 @@
+keymap l MOVE_RIGHT
+keymap j MOVE_LEFT
+keymap k MOVE_DOWN1
+keymap i MOVE_UP1
+
+keymap w NEXT_WORD
+keymap b PREV_WORD
+
+keymap o GOTO_LINK
+keymap C-j PREV
+keymap C-l NEXT
+
+
