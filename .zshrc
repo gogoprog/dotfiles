@@ -72,3 +72,6 @@ stty start undef
 stty stop undef
 setopt noflowcontrol
 
+
+bindkey -s '[11~' 'urxvt &'
+bindkey -s '' 'urxvt &'

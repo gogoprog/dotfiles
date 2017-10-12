@@ -57,12 +57,6 @@ txtwht='\e[0;37m' # White
 txtrst='\e[0m'    # Text Reset
 PS1="\[$txtgrn\]\u\[$txtrst\]@\[$txtblu\]\h\[$txtrst\]:\w\[$txtrst\] \$\[$txtrst\] "
 
-# conf
-export SVN_EDITOR="leafpad"
-export MOJITO="/home/gogoprog/code/mojito"
-export COLLADA="/home/gogoprog/code/opencollada"
-export GGPVISION_SRC="/home/gogoprog/code/ggpvision/src"
-
 # paths
 export PATH="$PATH:/home/gogoprog/code/scripts:/home/gogoprog/ruby/:$MOJITO/TOOLS/PROJECT_MAKER/:$MOJITO/MOJITO/APP/TOOLS/LINUX/"
 
