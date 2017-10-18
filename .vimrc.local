@@ -38,6 +38,7 @@ nnoremap <silent> <c-k> :wincmd j<CR>
 nnoremap <silent> <c-j> :bp<CR>
 nnoremap <silent> <c-l> :bn<CR>
 autocmd FileType cs nnoremap <buffer> <C-]> :OmniSharpGotoDefinition<CR>
+autocmd FileType cs nnoremap <buffer> <C-K> :OmniSharpCodeFormat<CR>
 
 function! Multiple_cursors_before()
     exe 'NeoCompleteLock'
@@ -55,3 +56,5 @@ map  :Commentary<CR>
 xmap <C-I> >
 xmap } <
 
+unmap <C-K>
+map <C-K> ggVG:pyf /usr/share/clang/clang-format.py<CR>
