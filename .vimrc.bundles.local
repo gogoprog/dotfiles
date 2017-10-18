@@ -6,4 +6,5 @@ UnBundle 'amirh/HTML-AutoCloseTag'
 Plugin 'jdonaldson/vaxe'
 Plugin 'OmniSharp/omnisharp-vim'
 Plugin 'tpope/vim-dispatch'
+Plugin 'leafgarland/typescript-vim'
 
