@@ -3,6 +3,7 @@ let project_root = getcwd()
 let $PROJECT_ROOT = getcwd()
 let g:ctrlp_working_path_mode = 0
 let g:ctrlp_user_command = 'find -L %s -type f -not -path "*/.git/*" -not -path "*.meta" -not -path "*/metadata/*"'
+
 set autoread
 au CursorHold,CursorHoldI * checktime
 set updatetime=1000
@@ -59,3 +60,6 @@ xmap } <
 
 unmap <C-K>
 map <C-K> ggVG:pyf /usr/share/clang/clang-format.py<CR>
+
+set nofen
+
