@@ -148,8 +148,8 @@ map <C-K> ggVG:pyf /usr/share/clang/clang-format.py<CR>
 
 set showmode                    " Display the current mode
 
-" set cursorline                  " Highlight current line
-
+set cursorline
+set lazyredraw
 highlight clear SignColumn      " SignColumn should match background
 highlight clear LineNr          " Current line number row will have same background color in relative mode
 
@@ -165,8 +165,8 @@ set winminheight=0              " Windows can be 0 line high
 set wildmenu                    " Show list instead of just completing
 set wildmode=list:longest,full  " Command <Tab> completion, list matches, then longest common part, then all.
 set whichwrap=b,s,h,l,<,>,[,]   " Backspace and cursor keys wrap too
-set scrolljump=5                " Lines to scroll when cursor leaves screen
-set scrolloff=3                 " Minimum lines to keep above and below cursor
+set scrolljump=8                " Lines to scroll when cursor leaves screen
+set scrolloff=5                 " Minimum lines to keep above and below cursor
 set nofen
 set background=dark
 set mouse=a
@@ -184,8 +184,9 @@ set softtabstop=4               " Let backspace delete indent
 set nojoinspaces                " Prevents inserting two spaces after punctuation on a join (J)
 set splitright                  " Puts new vsplit windows to the right of the current
 set splitbelow                  " Puts new split windows to the bottom of the current
-	
+
 syntax on
+
 
 let g:solarized_termcolors=256
 let g:solarized_termtrans=1
@@ -205,10 +206,10 @@ let g:neocomplete#force_overwrite_completefunc = 1
 
 " Define dictionary.
 let g:neocomplete#sources#dictionary#dictionaries = {
-	\ 'default' : '',
-	\ 'vimshell' : $HOME.'/.vimshell_hist',
-	\ 'scheme' : $HOME.'/.gosh_completions'
-	\ }
+    \ 'default' : '',
+    \ 'vimshell' : $HOME.'/.vimshell_hist',
+    \ 'scheme' : $HOME.'/.gosh_completions'
+    \ }
 
 " Define keyword.
 if !exists('g:neocomplete#keyword_patterns')
@@ -234,8 +235,8 @@ else
     " <C-k> Complete Snippet
     " <C-k> Jump to next snippet point
     imap <silent><expr><C-k> neosnippet#expandable() ?
-		\ "\<Plug>(neosnippet_expand_or_jump)" : (pumvisible() ?
-		\ "\<C-e>" : "\<Plug>(neosnippet_expand_or_jump)")
+        \ "\<Plug>(neosnippet_expand_or_jump)" : (pumvisible() ?
+        \ "\<C-e>" : "\<Plug>(neosnippet_expand_or_jump)")
     smap <TAB> <Right><Plug>(neosnippet_jump_or_expand)
 
     inoremap <expr><C-g> neocomplete#undo_completion()
@@ -247,11 +248,11 @@ else
     inoremap <expr><s-CR> pumvisible() ? neocomplete#smart_close_popup()."\<CR>" : "\<CR>"
 
     function! CleverCr()
-	if pumvisible()
-	    return neocomplete#smart_close_popup()
-	else
-	    return "\<CR>"
-	endif
+    if pumvisible()
+        return neocomplete#smart_close_popup()
+    else
+        return "\<CR>"
+    endif
     endfunction
 
     " <CR> close popup and save indent or expand snippet
@@ -268,15 +269,15 @@ inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<TAB>"
 
 function! CleverTab()
     if pumvisible()
-	return "\<C-n>"
+    return "\<C-n>"
     endif
     let substr = strpart(getline('.'), 0, col('.') - 1)
     let substr = matchstr(substr, '[^ \t]*$')
     if strlen(substr) == 0
-	" nothing to match on empty string
-	return "\<Tab>"
+    " nothing to match on empty string
+    return "\<Tab>"
     else
-	" existing text matching
+    " existing text matching
         return neocomplete#start_manual_complete()
     endif
 endfunction
