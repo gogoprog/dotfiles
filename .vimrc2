@@ -21,7 +21,7 @@ Plugin 'spf13/vim-colors'
 " Plugin 'jiangmiao/auto-pairs'
 Plugin 'ctrlpvim/ctrlp.vim'
 " Plugin 'tacahiroy/ctrlp-funky'
-" Plugin 'terryma/vim-multiple-cursors'
+Plugin 'terryma/vim-multiple-cursors'
 " Plugin 'vim-scripts/sessionman.vim'
 " Plugin 'matchit.zip'
 " Plugin 'vim-airline/vim-airline'
@@ -148,7 +148,7 @@ map <C-K> ggVG:pyf /usr/share/clang/clang-format.py<CR>
 
 set showmode                    " Display the current mode
 
-set cursorline                  " Highlight current line
+" set cursorline                  " Highlight current line
 
 highlight clear SignColumn      " SignColumn should match background
 highlight clear LineNr          " Current line number row will have same background color in relative mode
@@ -170,6 +170,7 @@ set nofen
 set background=dark
 set mouse=a
 set mousehide
+set title
 
 syntax on
 
