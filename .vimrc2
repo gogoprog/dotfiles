@@ -1,0 +1,182 @@
+set nocompatible              " be iMproved, required
+filetype off                  " required
+
+" set the runtime path to include Vundle and initialize
+set rtp+=~/.vim/bundle/vundle
+call vundle#begin()
+" alternatively, pass a path where Vundle should install plugins
+"call vundle#begin('~/some/path/here')
+
+" let Vundle manage Vundle, required
+Plugin 'VundleVim/Vundle.vim'
+
+" Plugin 'MarcWeber/vim-addon-mw-utils'
+" Plugin 'tomtom/tlib_vim'
+Plugin 'scrooloose/nerdtree'
+Plugin 'altercation/vim-colors-solarized'
+Plugin 'spf13/vim-colors'
+" Plugin 'tpope/vim-surround'
+" Plugin 'tpope/vim-repeat'
+" Plugin 'rhysd/conflict-marker.vim'
+" Plugin 'jiangmiao/auto-pairs'
+Plugin 'ctrlpvim/ctrlp.vim'
+" Plugin 'tacahiroy/ctrlp-funky'
+" Plugin 'terryma/vim-multiple-cursors'
+" Plugin 'vim-scripts/sessionman.vim'
+" Plugin 'matchit.zip'
+" Plugin 'vim-airline/vim-airline'
+" Plugin 'vim-airline/vim-airline-themes'
+" Plugin 'powerline/fonts'
+" Plugin 'bling/vim-bufferline'
+Plugin 'easymotion/vim-easymotion'
+" Plugin 'jistr/vim-nerdtree-tabs'
+Plugin 'flazz/vim-colorschemes'
+" Plugin 'mbbill/undotree'
+" Plugin 'nathanaelkane/vim-indent-guides'
+" Plugin 'vim-scripts/restore_view.vim'
+" Plugin 'mhinz/vim-signify'
+" Plugin 'tpope/vim-abolish.git'
+" Plugin 'osyo-manga/vim-over'
+" Plugin 'kana/vim-textobj-user'
+" Plugin 'kana/vim-textobj-indent'
+" Plugin 'gcmt/wildfire.vim'
+" Plugin 'scrooloose/syntastic'
+Plugin 'tpope/vim-fugitive'
+" Plugin 'mattn/webapi-vim'
+" Plugin 'mattn/gist-vim'
+" Plugin 'scrooloose/nerdcommenter'
+Plugin 'tpope/vim-commentary'
+" Plugin 'godlygeek/tabular'
+" Plugin 'luochen1990/rainbow'
+Plugin 'Shougo/neocomplete.vim.git'
+" Plugin 'Shougo/neosnippet'
+" Plugin 'Shougo/neosnippet-snippets'
+" Plugin 'honza/vim-snippets'
+" Plugin 'beyondwords/vim-twig'
+" Plugin 'elzr/vim-json'
+" Plugin 'groenewege/vim-less'
+Plugin 'pangloss/vim-javascript'
+" Plugin 'briancollins/vim-jst'
+" Plugin 'kchmck/vim-coffee-script'
+Plugin 'hail2u/vim-css3-syntax'
+Plugin 'gorodinskiy/vim-coloresque'
+" Plugin 'tpope/vim-haml'
+" Plugin 'mattn/emmet-vim'
+" Plugin 'tpope/vim-rails'
+" Plugin 'rust-lang/rust.vim'
+" Plugin 'tpope/vim-markdown'
+" Plugin 'spf13/vim-preview'
+" Plugin 'tpope/vim-cucumber'
+" Plugin 'cespare/vim-toml'
+" Plugin 'quentindecock/vim-cucumber-align-pipes'
+" Plugin 'saltstack/salt-vim'
+Plugin 'jdonaldson/vaxe'
+Plugin 'OmniSharp/omnisharp-vim'
+Plugin 'tpope/vim-dispatch'
+Plugin 'leafgarland/typescript-vim'
+Plugin 'mileszs/ack.vim'
+
+" All of your Plugins must be added before the following line
+call vundle#end()            " required
+filetype plugin indent on    " required
+" To ignore plugin indent changes, instead use:
+"filetype plugin on
+
+let project_root = getcwd()
+let $PROJECT_ROOT = getcwd()
+let g:ctrlp_working_path_mode = 0
+let g:ctrlp_user_command = 'find -L %s -type f -not -path "*/.git/*" -not -path "*.meta" -not -path "*/metadata/*"'
+
+set autoread
+au CursorHold,CursorHoldI * checktime
+set updatetime=1000
+
+" remap h to insert and use ijkl for inverse T cursor movement
+noremap h <insert>
+noremap i <Up>
+noremap j <Left>
+noremap k <Down>
+noremap <Space> <insert>
+
+nnoremap <c-s> :w<CR>
+inoremap <c-s> <Esc>:w<CR>l
+vnoremap <c-s> <Esc>:w<CR>
+
+let &t_SI = "\<Esc>[6 q"
+let &t_SR = "\<Esc>[4 q"
+let &t_EI = "\<Esc>[2 q"
+
+set secure exrc
+
+map f <Plug>(easymotion-bd-w)
+map ] :cd $PROJECT_ROOT <bar> Ack! 
+noremap <c-f> /
+noremap E :NERDTreeFind<CR>
+let g:ctrlp_map = 0
+map <C-P> :cd $PROJECT_ROOT <bar> :CtrlP<CR>
+"unmap <c-h>
+noremap <c-h> <c-i>
+noremap <silent> { :wincmd w<CR>
+nnoremap <silent> <c-i> :wincmd k<CR>
+nnoremap <silent> <c-k> :wincmd j<CR>
+nnoremap <silent> <c-j> :bp<CR>
+nnoremap <silent> <c-l> :bn<CR>
+autocmd FileType cs nnoremap <buffer> <C-]> :OmniSharpGotoDefinition<CR>
+autocmd FileType cs nnoremap <buffer> <C-K> :OmniSharpCodeFormat<CR>
+autocmd FileType html nnoremap <buffer> <C-K> :%!js-beautify --type html -s 2 -<CR><Esc><Esc><Esc>g;g;
+autocmd FileType haxe nnoremap <buffer> <C-K> :%!astyle --mode=cs -A1 -U -Y -j -o -O -xe -xg -xL -S -s4 -xj -xt1 -xW -z2<CR><Esc><Esc><Esc>g;g;
+
+function! Multiple_cursors_before()
+    exe 'NeoCompleteLock'
+    echo 'Disabled autocomplete'
+endfunction
+
+function! Multiple_cursors_after()
+    exe 'NeoCompleteUnlock'
+    echo 'Enabled autocomplete'
+endfunction
+
+let g:ackprg = 'ag --nogroup --nocolor --column --smart-case -f'
+
+map  :Commentary<CR>
+xmap <C-I> >
+xmap } <
+
+unmap <C-K>
+map <C-K> ggVG:pyf /usr/share/clang/clang-format.py<CR>
+
+
+set showmode                    " Display the current mode
+
+set cursorline                  " Highlight current line
+
+highlight clear SignColumn      " SignColumn should match background
+highlight clear LineNr          " Current line number row will have same background color in relative mode
+
+
+set backspace=indent,eol,start  " Backspace for dummies
+set linespace=0                 " No extra spaces between rows
+set number                      " Line numbers on
+set showmatch                   " Show matching brackets/parenthesis
+set incsearch                   " Find as you type search
+set hlsearch                    " Highlight search terms
+set winminheight=0              " Windows can be 0 line high
+set wildmenu                    " Show list instead of just completing
+set wildmode=list:longest,full  " Command <Tab> completion, list matches, then longest common part, then all.
+set whichwrap=b,s,h,l,<,>,[,]   " Backspace and cursor keys wrap too
+set scrolljump=5                " Lines to scroll when cursor leaves screen
+set scrolloff=3                 " Minimum lines to keep above and below cursor
+set nofen
+set background=dark
+set mouse=a
+set mousehide
+
+syntax on
+
+let g:solarized_termcolors=256
+let g:solarized_termtrans=1
+let g:solarized_contrast="normal"
+let g:solarized_visibility="normal"
+color solarized             " Load a colorscheme
+
+
