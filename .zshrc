@@ -75,3 +75,7 @@ setopt noflowcontrol
 
 bindkey -s '[11~' 'urxvt &'
 bindkey -s '' 'urxvt &'
+
+alias vim2='vim -u ~/.vimrc2'
+
+
