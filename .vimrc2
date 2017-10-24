@@ -1,15 +1,12 @@
-set nocompatible              " be iMproved, required
-filetype off                  " required
-
-" set the runtime path to include Vundle and initialize
+" Vundle
+set nocompatible
+filetype off
 set rtp+=~/.vim/bundle/vundle
+
+" Plugins
 call vundle#begin()
-" alternatively, pass a path where Vundle should install plugins
-"call vundle#begin('~/some/path/here')
 
-" let Vundle manage Vundle, required
 Plugin 'VundleVim/Vundle.vim'
-
 " Plugin 'MarcWeber/vim-addon-mw-utils'
 " Plugin 'tomtom/tlib_vim'
 Plugin 'scrooloose/nerdtree'
@@ -76,12 +73,10 @@ Plugin 'tpope/vim-dispatch'
 Plugin 'leafgarland/typescript-vim'
 Plugin 'mileszs/ack.vim'
 
-" All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
-" To ignore plugin indent changes, instead use:
-"filetype plugin on
 
+" Custom
 let project_root = getcwd()
 let $PROJECT_ROOT = getcwd()
 let g:ctrlp_working_path_mode = 0
@@ -91,7 +86,15 @@ set autoread
 au CursorHold,CursorHoldI * checktime
 set updatetime=1000
 
-" remap h to insert and use ijkl for inverse T cursor movement
+let &t_SI = "\<Esc>[6 q"
+let &t_SR = "\<Esc>[4 q"
+let &t_EI = "\<Esc>[2 q"
+
+set secure exrc " Application-specific .vimrc
+
+let g:ackprg = 'ag --nogroup --nocolor --column --smart-case -f'
+
+" Key mapping
 noremap h <insert>
 noremap i <Up>
 noremap j <Left>
@@ -101,12 +104,6 @@ noremap <Space> <insert>
 nnoremap <c-s> :w<CR>
 inoremap <c-s> <Esc>:w<CR>l
 vnoremap <c-s> <Esc>:w<CR>
-
-let &t_SI = "\<Esc>[6 q"
-let &t_SR = "\<Esc>[4 q"
-let &t_EI = "\<Esc>[2 q"
-
-set secure exrc
 
 map f <Plug>(easymotion-bd-w)
 map ] :cd $PROJECT_ROOT <bar> Ack! 
@@ -136,8 +133,6 @@ function! Multiple_cursors_after()
     echo 'Enabled autocomplete'
 endfunction
 
-let g:ackprg = 'ag --nogroup --nocolor --column --smart-case -f'
-
 map  :Commentary<CR>
 xmap <C-I> >
 xmap } <
@@ -145,14 +140,12 @@ xmap } <
 unmap <C-K>
 map <C-K> ggVG:pyf /usr/share/clang/clang-format.py<CR>
 
-
+" Settings
 set showmode                    " Display the current mode
-
 set cursorline
 set lazyredraw
 highlight clear SignColumn      " SignColumn should match background
 highlight clear LineNr          " Current line number row will have same background color in relative mode
-
 
 set backspace=indent,eol,start  " Backspace for dummies
 set linespace=0                 " No extra spaces between rows
@@ -188,7 +181,6 @@ set splitbelow                  " Puts new split windows to the bottom of the cu
 
 syntax on
 
-
 let g:solarized_termcolors=256
 let g:solarized_termtrans=1
 let g:solarized_contrast="normal"
@@ -203,7 +195,6 @@ let g:neocomplete#enable_smart_case = 1
 let g:neocomplete#enable_auto_delimiter = 1
 let g:neocomplete#max_list = 15
 let g:neocomplete#force_overwrite_completefunc = 1
-
 
 " Define dictionary.
 let g:neocomplete#sources#dictionary#dictionaries = {
@@ -298,3 +289,4 @@ let g:neocomplete#sources#omni#input_patterns.c = '[^.[:digit:] *\t]\%(\.\|->\)'
 let g:neocomplete#sources#omni#input_patterns.cpp = '[^.[:digit:] *\t]\%(\.\|->\)\|\h\w*::'
 let g:neocomplete#sources#omni#input_patterns.ruby = '[^. *\t]\.\h\w*\|\h\w*::'
 let g:neocomplete#sources#omni#input_patterns.cs = '.*[^=\);]'
+
