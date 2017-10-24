@@ -40,7 +40,7 @@ Plugin 'flazz/vim-colorschemes'
 " Plugin 'kana/vim-textobj-user'
 " Plugin 'kana/vim-textobj-indent'
 " Plugin 'gcmt/wildfire.vim'
-" Plugin 'scrooloose/syntastic'
+Plugin 'scrooloose/syntastic'
 Plugin 'tpope/vim-fugitive'
 " Plugin 'mattn/webapi-vim'
 " Plugin 'mattn/gist-vim'
@@ -174,6 +174,7 @@ set mousehide
 set title
 set list
 set listchars=tab:›\ ,trail:•,extends:#,nbsp:. " Highlight problematic whitespace
+set noswapfile
 
 set nowrap                      " Do not wrap long lines
 set autoindent                  " Indent at the same level of the previous line
@@ -285,6 +286,8 @@ endfunction
 imap <expr> <Tab> CleverTab()
 " }
 
+autocmd FileType cs setlocal omnifunc=OmniSharp#Complete
+
 " Enable heavy omni completion.
 if !exists('g:neocomplete#sources#omni#input_patterns')
 let g:neocomplete#sources#omni#input_patterns = {}
@@ -294,4 +297,4 @@ let g:neocomplete#sources#omni#input_patterns.perl = '\h\w*->\h\w*\|\h\w*::'
 let g:neocomplete#sources#omni#input_patterns.c = '[^.[:digit:] *\t]\%(\.\|->\)'
 let g:neocomplete#sources#omni#input_patterns.cpp = '[^.[:digit:] *\t]\%(\.\|->\)\|\h\w*::'
 let g:neocomplete#sources#omni#input_patterns.ruby = '[^. *\t]\.\h\w*\|\h\w*::'
-
+let g:neocomplete#sources#omni#input_patterns.cs = '.*[^=\);]'
