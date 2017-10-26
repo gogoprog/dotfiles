@@ -81,6 +81,8 @@ let project_root = getcwd()
 let $PROJECT_ROOT = getcwd()
 let g:ctrlp_working_path_mode = 0
 let g:ctrlp_user_command = 'find -L %s -type f -not -path "*/.git/*" -not -path "*.meta" -not -path "*/metadata/*"'
+let g:ctrlp_max_height = 40
+let g:ctrlp_match_natural_name = 1
 
 set autoread
 au CursorHold,CursorHoldI * checktime
