@@ -94,7 +94,7 @@ let &t_EI = "\<Esc>[2 q"
 
 set secure exrc " Application-specific .vimrc
 
-let g:ackprg = 'ag --nogroup --nocolor --column --smart-case -f'
+let g:ackprg = 'cd $PROJECT_ROOT && ag --nogroup --nocolor --column --smart-case -f'
 
 " Key mapping
 noremap h <insert>
