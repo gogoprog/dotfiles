@@ -144,8 +144,11 @@ xmap } <
 unmap <C-K>
 map <C-K> ggVG:pyf /usr/share/clang/clang-format.py<CR>
 
+map <F2> :cp<CR>
+map <F3> :cc<CR>
 map <F4> :cn<CR>
-map <F3> :cp<CR>
+
+let g:vaxe_skip_hxml=1
 
 " Settings
 set showmode                    " Display the current mode
