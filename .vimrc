@@ -93,6 +93,7 @@ let &t_SR = "\<Esc>[4 q"
 let &t_EI = "\<Esc>[2 q"
 
 set secure exrc " Application-specific .vimrc
+set clipboard=unnamedplus " X11 Clipboard
 
 let g:ackprg = 'cd $PROJECT_ROOT && ag --nogroup --nocolor --column --smart-case -f'
 
