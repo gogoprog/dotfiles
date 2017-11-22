@@ -124,6 +124,7 @@ autocmd FileType cs nnoremap <buffer> <C-]> :OmniSharpGotoDefinition<CR>
 autocmd FileType cs nnoremap <buffer> <C-K> :OmniSharpCodeFormat<CR>
 autocmd FileType html nnoremap <buffer> <C-K> :%!js-beautify --type html -s 2 -<CR><Esc><Esc><Esc>g;g;
 autocmd FileType scss nnoremap <buffer> <C-K> :%!js-beautify --type css -s 2 -<CR><Esc><Esc><Esc>g;g;
+autocmd FileType css nnoremap <buffer> <C-K> :%!js-beautify --type css -s 2 -<CR><Esc><Esc><Esc>g;g;
 autocmd FileType haxe nnoremap <buffer> <C-K> :%!astyle --mode=cs -A1 -U -Y -j -o -O -xe -xg -xL -S -s4 -xj -xt1 -xW -z2<CR><Esc><Esc><Esc>g;g;
 
 function! Multiple_cursors_before()
@@ -142,6 +143,9 @@ xmap } <
 
 unmap <C-K>
 map <C-K> ggVG:pyf /usr/share/clang/clang-format.py<CR>
+
+map <F4> :cn<CR>
+map <F3> :cp<CR>
 
 " Settings
 set showmode                    " Display the current mode
