@@ -179,6 +179,7 @@ set scrolljump=8                " Lines to scroll when cursor leaves screen
 set scrolloff=5                 " Minimum lines to keep above and below cursor
 set nofen
 set background=dark
+set t_Co=256                    " Fix color with tmux
 set mouse=a
 set mousehide
 set title
