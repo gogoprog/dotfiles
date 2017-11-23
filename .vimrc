@@ -97,6 +97,12 @@ set clipboard=unnamedplus " X11 Clipboard
 
 let g:ackprg = 'cd $PROJECT_ROOT && ag --nogroup --nocolor --column --smart-case -f'
 
+" Quickfix autoheight:
+au FileType qf call AdjustWindowHeight(3, 20)
+function! AdjustWindowHeight(minheight, maxheight)
+  exe max([min([line("$"), a:maxheight]), a:minheight]) . "wincmd _"
+endfunction
+
 " Key mapping
 noremap h <insert>
 noremap i <Up>
