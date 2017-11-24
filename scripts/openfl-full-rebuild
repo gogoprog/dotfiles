@@ -1,0 +1,4 @@
+pushd ~/code/haxe/lib/openfl/tools
+haxe build.hxml && haxe tools.hxml && lime rebuild tools && lime rebuild linux
+popd
+
