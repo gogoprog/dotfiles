@@ -21,8 +21,8 @@ Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'terryma/vim-multiple-cursors'
 " Plugin 'vim-scripts/sessionman.vim'
 " Plugin 'matchit.zip'
-" Plugin 'vim-airline/vim-airline'
-" Plugin 'vim-airline/vim-airline-themes'
+Plugin 'vim-airline/vim-airline'
+Plugin 'vim-airline/vim-airline-themes'
 " Plugin 'powerline/fonts'
 " Plugin 'bling/vim-bufferline'
 Plugin 'easymotion/vim-easymotion'
@@ -210,6 +210,9 @@ let g:solarized_termtrans=1
 let g:solarized_contrast="normal"
 let g:solarized_visibility="normal"
 color solarized             " Load a colorscheme
+
+let g:airline#extensions#tabline#enabled = 1
+
 
 " Neocompletion
 
