@@ -155,7 +155,8 @@ xmap <C-I> >
 xmap } <
 
 unmap <C-K>
-map <C-K> ggVG:pyf /usr/share/clang/clang-format.py<CR>
+map <C-K> ggVG:pyf /usr/share/clang/clang-format.py<CR><Esc><Esc><Esc>g;g;
+
 
 map <F2> :cp<CR>
 map <F3> :cc<CR>
