@@ -133,6 +133,8 @@ nnoremap <silent> <c-i> :wincmd k<CR>
 nnoremap <silent> <c-k> :wincmd j<CR>
 nnoremap <silent> <c-j> :bp<CR>
 nnoremap <silent> <c-l> :bn<CR>
+map <C-W> :bd<CR>
+
 autocmd FileType cs nnoremap <buffer> <C-]> :OmniSharpGotoDefinition<CR>
 autocmd FileType cs nnoremap <buffer> <C-K> :OmniSharpCodeFormat<CR>
 autocmd FileType html nnoremap <buffer> <C-K> :%!js-beautify --type html -s 2 -<CR><Esc><Esc><Esc>g;g;
