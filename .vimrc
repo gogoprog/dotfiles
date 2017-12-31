@@ -37,7 +37,6 @@ Plugin 'flazz/vim-colorschemes'
 " Plugin 'kana/vim-textobj-user'
 " Plugin 'kana/vim-textobj-indent'
 " Plugin 'gcmt/wildfire.vim'
-" Plugin 'scrooloose/syntastic'
 Plugin 'w0rp/ale'
 Plugin 'tpope/vim-fugitive'
 " Plugin 'mattn/webapi-vim'
@@ -46,7 +45,6 @@ Plugin 'tpope/vim-fugitive'
 Plugin 'tpope/vim-commentary'
 " Plugin 'godlygeek/tabular'
 " Plugin 'luochen1990/rainbow'
-Plugin 'Shougo/neocomplete.vim.git'
 " Plugin 'Shougo/neosnippet'
 " Plugin 'Shougo/neosnippet-snippets'
 " Plugin 'honza/vim-snippets'
@@ -73,6 +71,7 @@ Plugin 'OmniSharp/omnisharp-vim'
 Plugin 'tpope/vim-dispatch'
 Plugin 'leafgarland/typescript-vim'
 Plugin 'mileszs/ack.vim'
+Plugin 'Valloric/YouCompleteMe'
 
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -143,16 +142,6 @@ autocmd FileType scss nnoremap <buffer> <C-K> :%!js-beautify --type css -s 2 -<C
 autocmd FileType css nnoremap <buffer> <C-K> :%!js-beautify --type css -s 2 -<CR><Esc><Esc><Esc>g;g;
 autocmd FileType haxe nnoremap <buffer> <C-K> :%!astyle --mode=cs -A1 -U -Y -j -o -O -xe -xg -xL -S -s4 -xj -xt1 -xW -z2<CR><Esc><Esc><Esc>g;g;
 
-function! Multiple_cursors_before()
-    exe 'NeoCompleteLock'
-    echo 'Disabled autocomplete'
-endfunction
-
-function! Multiple_cursors_after()
-    exe 'NeoCompleteUnlock'
-    echo 'Enabled autocomplete'
-endfunction
-
 map  :Commentary<CR>
 xmap <C-I> >
 xmap } <
@@ -218,108 +207,8 @@ color solarized             " Load a colorscheme
 let g:airline#extensions#tabline#enabled = 1
 
 
-" Neocompletion
-
-let g:acp_enableAtStartup = 0
-let g:neocomplete#enable_at_startup = 1
-let g:neocomplete#enable_smart_case = 1
-let g:neocomplete#enable_auto_delimiter = 1
-let g:neocomplete#max_list = 15
-let g:neocomplete#force_overwrite_completefunc = 1
-
-" Define dictionary.
-let g:neocomplete#sources#dictionary#dictionaries = {
-    \ 'default' : '',
-    \ 'vimshell' : $HOME.'/.vimshell_hist',
-    \ 'scheme' : $HOME.'/.gosh_completions'
-    \ }
-
-" Define keyword.
-if !exists('g:neocomplete#keyword_patterns')
-let g:neocomplete#keyword_patterns = {}
-endif
-let g:neocomplete#keyword_patterns['default'] = '\h\w*'
-
-" Plugin key-mappings {
-" These two lines conflict with the default digraph mapping of <C-K>
-if exists('g:spf13_noninvasive_completion')
-    inoremap <CR> <CR>
-    " <ESC> takes you out of insert mode
-    inoremap <expr> <Esc>   pumvisible() ? "\<C-y>\<Esc>" : "\<Esc>"
-    " <CR> accepts first, then sends the <CR>
-    inoremap <expr> <CR>    pumvisible() ? "\<C-y>\<CR>" : "\<CR>"
-    " <Down> and <Up> cycle like <Tab> and <S-Tab>
-    inoremap <expr> <Down>  pumvisible() ? "\<C-n>" : "\<Down>"
-    inoremap <expr> <Up>    pumvisible() ? "\<C-p>" : "\<Up>"
-    " Jump up and down the list
-    inoremap <expr> <C-d>   pumvisible() ? "\<PageDown>\<C-p>\<C-n>" : "\<C-d>"
-    inoremap <expr> <C-u>   pumvisible() ? "\<PageUp>\<C-p>\<C-n>" : "\<C-u>"
-else
-    " <C-k> Complete Snippet
-    " <C-k> Jump to next snippet point
-    imap <silent><expr><C-k> neosnippet#expandable() ?
-        \ "\<Plug>(neosnippet_expand_or_jump)" : (pumvisible() ?
-        \ "\<C-e>" : "\<Plug>(neosnippet_expand_or_jump)")
-    smap <TAB> <Right><Plug>(neosnippet_jump_or_expand)
-
-    inoremap <expr><C-g> neocomplete#undo_completion()
-    inoremap <expr><C-l> neocomplete#complete_common_string()
-    "inoremap <expr><CR> neocomplete#complete_common_string()
-
-    " <CR>: close popup
-    " <s-CR>: close popup and save indent.
-    inoremap <expr><s-CR> pumvisible() ? neocomplete#smart_close_popup()."\<CR>" : "\<CR>"
-
-    function! CleverCr()
-    if pumvisible()
-        return neocomplete#smart_close_popup()
-    else
-        return "\<CR>"
-    endif
-    endfunction
-
-    " <CR> close popup and save indent or expand snippet
-    imap <expr> <CR> CleverCr()
-    " <C-h>, <BS>: close popup and delete backword char.
-    inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
-    inoremap <expr><C-y> neocomplete#smart_close_popup()
-endif
-" <TAB>: completion.
-inoremap <expr><TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
-inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<TAB>"
-
-" Courtesy of Matteo Cavalleri
-
-function! CleverTab()
-    if pumvisible()
-    return "\<C-n>"
-    endif
-    let substr = strpart(getline('.'), 0, col('.') - 1)
-    let substr = matchstr(substr, '[^ \t]*$')
-    if strlen(substr) == 0
-    " nothing to match on empty string
-    return "\<Tab>"
-    else
-    " existing text matching
-        return neocomplete#start_manual_complete()
-    endif
-endfunction
-
-imap <expr> <Tab> CleverTab()
-" }
-
-autocmd FileType cs setlocal omnifunc=OmniSharp#Complete
-
-" Enable heavy omni completion.
-if !exists('g:neocomplete#sources#omni#input_patterns')
-let g:neocomplete#sources#omni#input_patterns = {}
-endif
-let g:neocomplete#sources#omni#input_patterns.php = '[^. \t]->\h\w*\|\h\w*::'
-let g:neocomplete#sources#omni#input_patterns.perl = '\h\w*->\h\w*\|\h\w*::'
-let g:neocomplete#sources#omni#input_patterns.c = '[^.[:digit:] *\t]\%(\.\|->\)'
-let g:neocomplete#sources#omni#input_patterns.cpp = '[^.[:digit:] *\t]\%(\.\|->\)\|\h\w*::'
-let g:neocomplete#sources#omni#input_patterns.ruby = '[^. *\t]\.\h\w*\|\h\w*::'
-let g:neocomplete#sources#omni#input_patterns.cs = '.*[^=\);]'
-
 let g:ale_cpp_clangcheck_options="-std=c++17"
+let g:ycm_confirm_extra_conf=0
+let g:ycm_extra_conf_globlist=['~/.vim/*']
+let g:ycm_global_ycm_extra_conf='~/.vim/ycm_extra_conf.py'
 
