@@ -37,7 +37,8 @@ Plugin 'flazz/vim-colorschemes'
 " Plugin 'kana/vim-textobj-user'
 " Plugin 'kana/vim-textobj-indent'
 " Plugin 'gcmt/wildfire.vim'
-Plugin 'scrooloose/syntastic'
+" Plugin 'scrooloose/syntastic'
+Plugin 'w0rp/ale'
 Plugin 'tpope/vim-fugitive'
 " Plugin 'mattn/webapi-vim'
 " Plugin 'mattn/gist-vim'
@@ -319,4 +320,6 @@ let g:neocomplete#sources#omni#input_patterns.c = '[^.[:digit:] *\t]\%(\.\|->\)'
 let g:neocomplete#sources#omni#input_patterns.cpp = '[^.[:digit:] *\t]\%(\.\|->\)\|\h\w*::'
 let g:neocomplete#sources#omni#input_patterns.ruby = '[^. *\t]\.\h\w*\|\h\w*::'
 let g:neocomplete#sources#omni#input_patterns.cs = '.*[^=\);]'
+
+let g:ale_cpp_clangcheck_options="-std=c++17"
 
