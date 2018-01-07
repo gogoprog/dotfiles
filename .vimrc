@@ -16,8 +16,6 @@ Plugin 'spf13/vim-colors'
 " Plugin 'tpope/vim-repeat'
 " Plugin 'rhysd/conflict-marker.vim'
 Plugin 'jiangmiao/auto-pairs'
-Plugin 'ctrlpvim/ctrlp.vim'
-" Plugin 'tacahiroy/ctrlp-funky'
 Plugin 'terryma/vim-multiple-cursors'
 " Plugin 'vim-scripts/sessionman.vim'
 " Plugin 'matchit.zip'
@@ -72,6 +70,7 @@ Plugin 'tpope/vim-dispatch'
 Plugin 'leafgarland/typescript-vim'
 Plugin 'mileszs/ack.vim'
 Plugin 'Valloric/YouCompleteMe'
+Plugin 'junegunn/fzf.vim'
 
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -79,10 +78,6 @@ filetype plugin indent on    " required
 " Custom
 let project_root = getcwd()
 let $PROJECT_ROOT = getcwd()
-let g:ctrlp_working_path_mode = 0
-let g:ctrlp_user_command = 'find -L %s -type f -not -path "*/.git/*" -not -path "*.meta" -not -path "*/metadata/*"'
-let g:ctrlp_max_height = 40
-let g:ctrlp_match_natural_name = 1
 
 set autoread
 au CursorHold,CursorHoldI * checktime
@@ -124,8 +119,7 @@ map f <Plug>(easymotion-bd-w)
 map ] :cd $PROJECT_ROOT <bar> Ack! 
 noremap <c-f> /
 noremap E :NERDTreeFind<CR>
-let g:ctrlp_map = 0
-map <C-P> :cd $PROJECT_ROOT <bar> :CtrlP<CR>
+map <C-P> :cd $PROJECT_ROOT <bar> :Files<CR>
 "unmap <c-h>
 noremap <c-h> <c-i>
 noremap <silent> { :wincmd w<CR>
