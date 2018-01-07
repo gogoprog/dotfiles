@@ -71,6 +71,7 @@ Plugin 'leafgarland/typescript-vim'
 Plugin 'mileszs/ack.vim'
 Plugin 'Valloric/YouCompleteMe'
 Plugin 'junegunn/fzf.vim'
+Plugin 'mechatroner/minimal_gdb'
 
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -147,6 +148,8 @@ map <C-K> ggVG:pyf /usr/share/clang/clang-format.py<CR><Esc><Esc><Esc>g;g;
 map <F2> :cp<CR>
 map <F3> :cc<CR>
 map <F4> :cn<CR>
+
+map <F9> :MinGDBToggleBP<CR>
 
 let g:vaxe_skip_hxml=1
 
