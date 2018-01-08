@@ -72,6 +72,7 @@ stty start undef
 stty stop undef
 setopt noflowcontrol
 
+bindkey '' fzf-file-widget
 
 bindkey -s '[11~' 'urxvt &'
 bindkey -s '' 'urxvt &'
