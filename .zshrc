@@ -74,9 +74,8 @@ setopt noflowcontrol
 
 bindkey '' fzf-file-widget
 
-bindkey -s '[11~' 'urxvt &'
+alias tvim="tmux new-session\; send-keys 'vim' Enter"
+
+bindkey -s '[11~' 'tvim'
+
 bindkey -s '' 'urxvt &'
-
-alias vim-spf13='vim -u ~/.vimrc.spf13'
-
-
