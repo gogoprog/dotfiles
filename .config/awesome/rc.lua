@@ -22,6 +22,8 @@ local freedesktop   = require("freedesktop")
 local hotkeys_popup = require("awful.hotkeys_popup").widget
 -- }}}
 
+naughty.config.defaults['icon_size'] = 128
+
 -- {{{ Error handling
 if awesome.startup_errors then
     naughty.notify({ preset = naughty.config.presets.critical,
