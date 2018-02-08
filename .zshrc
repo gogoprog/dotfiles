@@ -74,7 +74,11 @@ setopt noflowcontrol
 
 bindkey '' fzf-file-widget
 
-alias tvim="tmux new-session\; send-keys 'vim' Enter"
+function tvim () {
+    if [ "$TMUX" = "" ]; then
+        tmux new-session\; send-keys 'vim' Enter
+    fi
+}
 
 bindkey -s '[11~' 'tvim'
 
