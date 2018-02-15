@@ -193,6 +193,8 @@ set nojoinspaces                " Prevents inserting two spaces after punctuatio
 set splitright                  " Puts new vsplit windows to the right of the current
 set splitbelow                  " Puts new split windows to the bottom of the current
 
+set hidden                      " Allow unsaved modified buffers
+
 syntax on
 
 let g:solarized_termcolors=256
