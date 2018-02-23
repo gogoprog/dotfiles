@@ -106,10 +106,10 @@ function! AdjustWindowHeight(minheight, maxheight)
 endfunction
 
 " Key mapping
-noremap h <insert>
-noremap i <Up>
-noremap j <Left>
-noremap k <Down>
+map i <Up>
+map k <Down>
+map j <Left>
+noremap h i
 noremap <Space> <insert>
 
 nnoremap <c-s> :w<CR>
