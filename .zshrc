@@ -36,6 +36,8 @@ source $ZSH/oh-my-zsh.sh
 # Customize to your needs...
 export PATH="$PATH:$HOME/scripts:$HOME/code/scripts"
 export UNITY=/opt/Unity
+export ANDROID_HOME=~/code/Android/Sdk
+export ANDROID_NDK=/opt/android-ndk
 
 ZSH_THEME_GIT_PROMPT_PREFIX=" [%{%B%F{yellow}%}"
 
