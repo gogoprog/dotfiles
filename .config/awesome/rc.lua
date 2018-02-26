@@ -378,7 +378,7 @@ globalkeys = awful.util.table.join(
               {description = "restore minimized", group = "client"}),
 
     -- Dropdown application
-    awful.key({ modkey, }, "z", function () awful.screen.focused().quake:toggle() end),
+    awful.key({ "Control" }, "`", function () awful.screen.focused().quake:toggle() end),
 
     -- Widgets popups
     awful.key({ altkey, }, "c", function () lain.widgets.calendar.show(7) end),

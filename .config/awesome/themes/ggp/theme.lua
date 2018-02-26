@@ -298,7 +298,8 @@ local bar_spr   = wibox.widget.textbox(markup.font("Tamzen 3", " ") .. markup.fo
 
 function theme.at_screen_connect(s)
     -- Quake application
-    s.quake = lain.util.quake({ app = awful.util.terminal })
+    -- s.quake = lain.util.quake({ app = awful.util.terminal })
+    s.quake = lain.util.quake({app = "urxvtc"})
 
     -- If wallpaper is a function, call it with the screen
     if type(wallpaper) == "function" then

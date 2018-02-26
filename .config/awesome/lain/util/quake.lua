@@ -121,7 +121,7 @@ end
 function quake:new(config)
     local conf = config or {}
 
-    conf.app        = conf.app       or "xterm"    -- application to spawn
+    conf.app        = conf.app       or "urxvtc"    -- application to spawn
     conf.name       = conf.name      or "QuakeDD"  -- window name
     conf.argname    = conf.argname   or "-name %s" -- how to specify window name
     conf.extra      = conf.extra     or ""         -- extra arguments
