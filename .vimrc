@@ -143,7 +143,7 @@ xmap } <
 
 unmap <C-K>
 map <C-K> ggVG:pyf /usr/share/clang/clang-format.py<CR><Esc><Esc><Esc>g;g;
-
+map o :e %:p:s,.h$,.X123X,:s,.cpp$,.h,:s,.X123X$,.cpp,<CR>
 
 map <F2> :cp<CR>
 map <F3> :cc<CR>
