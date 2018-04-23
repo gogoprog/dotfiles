@@ -70,6 +70,7 @@ Plugin 'tpope/vim-dispatch'
 Plugin 'leafgarland/typescript-vim'
 Plugin 'mileszs/ack.vim'
 Plugin 'Valloric/YouCompleteMe'
+set rtp+=~/.oh-my-zsh/custom/plugins/fzf
 Plugin 'junegunn/fzf.vim'
 Plugin 'mechatroner/minimal_gdb'
 
