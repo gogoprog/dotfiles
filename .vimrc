@@ -73,6 +73,7 @@ Plugin 'Valloric/YouCompleteMe'
 set rtp+=~/.oh-my-zsh/custom/plugins/fzf
 Plugin 'junegunn/fzf.vim'
 Plugin 'mechatroner/minimal_gdb'
+Plugin 'justinmk/vim-sneak'
 
 call vundle#end()            " required
 filetype plugin indent on    " required
