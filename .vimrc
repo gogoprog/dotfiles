@@ -138,6 +138,7 @@ autocmd FileType html nnoremap <buffer> <C-K> :%!js-beautify --type html -s 2 -<
 autocmd FileType scss nnoremap <buffer> <C-K> :%!js-beautify --type css -s 2 -<CR><Esc><Esc><Esc>g;g;
 autocmd FileType css nnoremap <buffer> <C-K> :%!js-beautify --type css -s 2 -<CR><Esc><Esc><Esc>g;g;
 autocmd FileType haxe nnoremap <buffer> <C-K> :%!astyle --mode=cs -A2 -U -Y -j -o -O -xe -xg -xL -S -s4 -xj -xt1 -xW -z2<CR><Esc><Esc><Esc>g;g;
+autocmd FileType java nnoremap <buffer> <C-K> :%!astyle --mode=java -A2 -U -Y -j -o -O -xe -xg -xL -S -s4 -xj -xt1 -xW -z2<CR><Esc><Esc><Esc>g;g;
 
 map  :Commentary<CR>
 xmap <C-I> >
