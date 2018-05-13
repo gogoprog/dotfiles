@@ -152,6 +152,7 @@ map <F2> :cp<CR>
 map <F3> :cc<CR>
 map <F4> :cn<CR>
 
+map <F7> :Make<CR>
 map <F9> :MinGDBToggleBP<CR>
 
 let g:vaxe_skip_hxml=1
