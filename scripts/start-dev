@@ -1,0 +1,14 @@
+#!/bin/bash
+
+pushd ~/code/firefalcom
+python -m http.server 8000 &
+popd
+
+pushd ~/code/haxe
+./serve &
+popd
+
+pushd ~/various
+sudo -b openvpn *.ovpn
+popd
+
