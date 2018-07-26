@@ -1,0 +1,8 @@
+#!/bin/bash
+
+mkdir ~/.start-chromes
+for i in $(seq 1 $1)
+do
+    google-chrome-stable --user-data-dir=~/.start-chromes/chrome${i} --no-default-browser-check &
+done
+
