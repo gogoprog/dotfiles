@@ -75,6 +75,7 @@ Plugin 'junegunn/fzf.vim'
 Plugin 'mechatroner/minimal_gdb'
 Plugin 'justinmk/vim-sneak'
 Plugin 'tpope/vim-sleuth'
+Plugin 'bkad/CamelCaseMotion'
 
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -155,6 +156,15 @@ map <F4> :cn<CR>
 
 map <F7> :Make<CR>
 map <F9> :MinGDBToggleBP<CR>
+
+map <silent> w <Plug>CamelCaseMotion_w
+map <silent> b <Plug>CamelCaseMotion_b
+map <silent> e <Plug>CamelCaseMotion_e
+map <silent> ge <Plug>CamelCaseMotion_ge
+sunmap w
+sunmap b
+sunmap e
+sunmap ge
 
 let g:vaxe_skip_hxml=1
 
