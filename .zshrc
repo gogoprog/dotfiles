@@ -85,3 +85,9 @@ function tvim () {
 bindkey -s '[11~' 'tvim'
 
 bindkey -s '' 'urxvt &'
+
+# OPAM configuration
+. /home/gogoprog/.opam/opam-init/init.zsh > /dev/null 2> /dev/null || true
+
+eval "$(direnv hook zsh)"
+
