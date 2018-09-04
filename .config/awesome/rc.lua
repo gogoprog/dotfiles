@@ -381,9 +381,9 @@ globalkeys = awful.util.table.join(
     awful.key({ "Control" }, "`", function () awful.screen.focused().quake:toggle() end),
 
     -- Widgets popups
-    awful.key({ altkey, }, "c", function () lain.widgets.calendar.show(7) end),
-    awful.key({ altkey, }, "h", function () if beautiful.fs then beautiful.fs.show(7) end end),
-    awful.key({ altkey, }, "w", function () if beautiful.weather then beautiful.weather.show(7) end end),
+    -- awful.key({ altkey, }, "c", function () lain.widgets.calendar.show(7) end),
+    -- awful.key({ altkey, }, "h", function () if beautiful.fs then beautiful.fs.show(7) end end),
+    -- awful.key({ altkey, }, "w", function () if beautiful.weather then beautiful.weather.show(7) end end),
 
     -- ALSA volume control
     awful.key({ altkey }, "Up",
