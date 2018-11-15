@@ -76,6 +76,7 @@ Plugin 'mechatroner/minimal_gdb'
 Plugin 'justinmk/vim-sneak'
 Plugin 'tpope/vim-sleuth'
 Plugin 'chaoren/vim-wordmotion'
+Plugin 'lyuts/vim-rtags'
 
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -217,3 +218,10 @@ let g:ycm_confirm_extra_conf=0
 let g:ycm_extra_conf_globlist=['~/.vim/*']
 let g:ycm_global_ycm_extra_conf='~/.vim/ycm_extra_conf.py'
 let g:AutoPairsMultilineClose=0
+
+if filereadable(expand("compile_commands.json"))
+  autocmd FileType cpp map  :call rtags#JumpTo(g:SAME_WINDOW)<CR>
+  autocmd FileType h map  :call rtags#JumpTo(g:SAME_WINDOW)<CR>
+  autocmd FileType hpp map  :call rtags#JumpTo(g:SAME_WINDOW)<CR>
+endif
+
