@@ -611,6 +611,8 @@ awful.rules.rules = {
 
     { rule = { class = "Gimp", role = "gimp-image-window" },
           properties = { maximized = true } },
+    { rule = { class = "QtCreator" },
+          properties = { maximized = true } },
     { rule = { class = "URxvt" },
           properties = { focus = true } },
 }

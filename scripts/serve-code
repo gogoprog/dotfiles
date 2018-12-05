@@ -1,0 +1,5 @@
+#!/bin/bash
+
+pushd ~/code
+python -m http.server 8000
+

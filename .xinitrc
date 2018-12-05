@@ -5,6 +5,5 @@ setxkbmap -option ctrl:nocaps
 xmodmap ~/.xmodmap
 xbindkeys
 numlockx &
+serve-code &
 exec awesome
-#exec startlxde
-
