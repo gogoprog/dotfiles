@@ -1,0 +1,6 @@
+#!/bin/bash
+
+urxvt -hold -e tmux new-session\; send-keys 'vim' Enter &
+urxvt -hold -e livereload -x hx &
+urxvt &
+urxvt &

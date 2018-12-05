@@ -1,6 +1,0 @@
-#!/bin/zsh
-
-cd ~/code/gengine-samples
-source gengine/scripts/activate
-subl3
-
