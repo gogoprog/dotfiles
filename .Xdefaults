@@ -18,9 +18,12 @@ urxvt*saveLines: 20000
 urxvt*scrollBar:         false
 
 ! Extensions
-urxvt*urlLauncher:     /usr/bin/chromium
-urxvt.url-launcher:      /usr/bin/chromium
-urxvt.matcher.button:   1
+URxvt.perl-lib: /home/gogoprog/scripts
+URxvt.perl-ext: mark-yank-urls
+URxvt.underlineURLs: true
+URxvt.matcher.rend.0: fg2
+URxvt.keysym.C-u: perl:mark-yank-urls:activate_mark_mode
+URxvt*urlLauncher: chromium
 
 urxvt*font: xft:Monaco:pixelsize=11
 
