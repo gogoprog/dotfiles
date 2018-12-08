@@ -6,6 +6,8 @@ Xft.hinting: 1
 Xft.antialias: 1
 Xft.rgba: rgb
 
+urxvt*font: xft:Monaco:pixelsize=11
+
 urxvt*transparent:true
 urxvt*shading:40
 urxvt*background:Black
@@ -21,12 +23,14 @@ urxvt*scrollBar:         false
 URxvt.perl-lib: /home/gogoprog/scripts
 URxvt.perl-ext: mark-yank-urls
 URxvt.underlineURLs: true
-URxvt.matcher.rend.0: fg2
 URxvt.keysym.C-u: perl:mark-yank-urls:activate_mark_mode
 URxvt*urlLauncher: chromium
+URxvt.perl-ext-common: default,matcher
+URxvt.url-launcher: /usr/bin/xdg-open
+URxvt.matcher.button: 1
+URxvt.matcher.rend.0: Uline
 
-urxvt*font: xft:Monaco:pixelsize=11
-
+! Keys
 urxvt.keysym.C-Tab: \033{
 !urxvt.keysym.Control-i: \033}
 !urxvt.keysym.Shift-ISO_Left_Tab: \033}
