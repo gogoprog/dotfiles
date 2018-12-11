@@ -21,11 +21,10 @@ urxvt*scrollBar:         false
 
 ! Extensions
 URxvt.perl-lib: /home/gogoprog/scripts
-URxvt.perl-ext: mark-yank-urls
+URxvt.perl-ext: default,matcher,mark-yank-urls
 URxvt.underlineURLs: true
 URxvt.keysym.C-i: perl:mark-yank-urls:activate_mark_mode
 URxvt*urlLauncher: chromium
-URxvt.perl-ext-common: default,matcher
 URxvt.url-launcher: /usr/bin/xdg-open
 URxvt.matcher.button: 1
 URxvt.matcher.rend.0: Uline
