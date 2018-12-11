@@ -168,7 +168,7 @@ sub on_key_release {
             $mod{shift} = 0;
             return 1;
 
-        } elsif (($ch eq 'i') || ($ch eq 'k')) {    # j and k to cycle
+        } elsif ($mod{control} == 0 && (($ch eq 'i') || ($ch eq 'k'))) {    # i and k to cycle
             my $dir = ($ch eq 'k') ? 1 : -1;
             move_highlight ($term, $dir);
 
