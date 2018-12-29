@@ -77,6 +77,7 @@ Plugin 'justinmk/vim-sneak'
 Plugin 'tpope/vim-sleuth'
 Plugin 'chaoren/vim-wordmotion'
 Plugin 'lyuts/vim-rtags'
+Plugin 'gogoprog/vim-executer'
 
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -155,6 +156,7 @@ map <F2> :cp<CR>
 map <F3> :cc<CR>
 map <F4> :cn<CR>
 
+map <F5> :ExecuterRun<CR>
 map <F7> :Make<CR>
 map <F9> :MinGDBToggleBP<CR>
 
