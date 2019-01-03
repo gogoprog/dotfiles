@@ -127,7 +127,6 @@ map ] :cd $PROJECT_ROOT <bar> Ack!
 noremap <c-f> /
 noremap E :NERDTreeFind<CR>
 map <C-P> :cd $PROJECT_ROOT <bar> :Files<CR>
-"unmap <c-h>
 noremap <c-h> <c-i>
 noremap <silent> { :wincmd w<CR>
 nnoremap <silent> <c-i> :wincmd k<CR>
@@ -160,6 +159,11 @@ map <F4> :cn<CR>
 map <F5> :ExecuterRun<CR>
 map <F7> :Make<CR>
 map <F9> :MinGDBToggleBP<CR>
+
+" Delete without yank
+nnoremap d "_d
+vnoremap d "_d
+xnoremap p pgvy
 
 let g:vaxe_skip_hxml=1
 
