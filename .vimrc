@@ -161,8 +161,8 @@ map <F7> :Make<CR>
 map <F9> :MinGDBToggleBP<CR>
 
 " Delete without yank
-nnoremap d "_d
-vnoremap d "_d
+nnoremap DD "_dd
+vnoremap DD "_dd
 xnoremap p pgvy
 
 let g:vaxe_skip_hxml=1
