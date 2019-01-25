@@ -1,5 +1,10 @@
 #!/bin/bash
 
+currentDir=$PWD
+relativeDir=`realpath --relative-to="$HOME/code" "$currentDir"`
+url="http://localhost:8000/$relativeDir/src"
+
+google-chrome-stable --auto-open-devtools-for-tabs $url &
 urxvt -hold -e tmux new-session\; send-keys 'vim' Enter &
 urxvt -hold -e livereload . -x hx &
 urxvt &
