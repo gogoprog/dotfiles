@@ -1,0 +1,4 @@
+#!/bin/bash
+
+DEVICEID=`xsetwacom --list devices | grep STYLUS | cut -d":" -f2 | awk '{ print $1 }'`
+xsetwacom set ${DEVICEID} MapToOutput `slop`
