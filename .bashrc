@@ -32,19 +32,6 @@ case ${TERM} in
 esac
 
 
-
-# aliases
-
-alias ls='ls --color -F -h'
-alias ll='ls -l -I "*~"'
-alias mv='mv -i'
-alias cp='cp -i'
-alias rm='rm -i'
-alias grep='grep --color'
-alias timi='timidity -iA -Os'
-
-alias mojito-premake='${MOJITO}/MOJITO/APP/TOOLS/LINUX/premake4'
-
 # colors
 txtblk='\e[0;30m' # Black - Regular
 txtred='\e[0;31m' # Red
@@ -58,5 +45,4 @@ txtrst='\e[0m'    # Text Reset
 PS1="\[$txtgrn\]\u\[$txtrst\]@\[$txtblu\]\h\[$txtrst\]:\w\[$txtrst\] \$\[$txtrst\] "
 
 # paths
-export PATH="$PATH:/home/gogoprog/code/scripts:/home/gogoprog/ruby/:$MOJITO/TOOLS/PROJECT_MAKER/:$MOJITO/MOJITO/APP/TOOLS/LINUX/"
-
+export PATH="$PATH:/home/gogoprog/code/scripts"
