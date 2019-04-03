@@ -137,6 +137,7 @@ map <C-W> :bd<CR>
 
 autocmd FileType cs nnoremap <buffer> <C-]> :OmniSharpGotoDefinition<CR>
 autocmd FileType cs nnoremap <buffer> <C-K> :OmniSharpCodeFormat<CR>
+autocmd FileType js,json nnoremap <buffer> <C-K> :%!js-beautify -<CR><Esc><Esc><Esc>g;g;
 autocmd FileType html nnoremap <buffer> <C-K> :%!js-beautify --type html -s 2 -<CR><Esc><Esc><Esc>g;g;
 autocmd FileType scss nnoremap <buffer> <C-K> :%!js-beautify --type css -s 2 -<CR><Esc><Esc><Esc>g;g;
 autocmd FileType css nnoremap <buffer> <C-K> :%!js-beautify --type css -s 2 -<CR><Esc><Esc><Esc>g;g;
