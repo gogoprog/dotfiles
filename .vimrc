@@ -166,8 +166,6 @@ nnoremap DD "_dd
 vnoremap DD "_dd
 xnoremap p pgvy
 
-let g:vaxe_skip_hxml=1
-
 " Settings
 set showmode                    " Display the current mode
 set cursorline
@@ -209,6 +207,7 @@ set splitright                  " Puts new vsplit windows to the right of the cu
 set splitbelow                  " Puts new split windows to the bottom of the current
 
 set hidden                      " Allow unsaved modified buffers
+set autowrite                   " Required by auto completion
 
 syntax on
 
