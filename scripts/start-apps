@@ -1,10 +1,5 @@
 #!/bin/bash
 
-
-pushd ~/code/
-urxvt -e screen weechat &
-popd
-
+urxvtc -title weechat -e screen weechat &
 chromium &
 slack &
-

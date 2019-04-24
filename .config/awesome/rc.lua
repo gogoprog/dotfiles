@@ -616,6 +616,25 @@ awful.rules.rules = {
     { rule = { class = "URxvt" },
           properties = { focus = true } },
 }
+
+if screen:count() == 3 then
+  table.insert(awful.rules.rules, { rule = { name = "weechat" }, properties = { screen = 1, tag = screen[1].tags[1]} })
+  table.insert(awful.rules.rules, { rule = { class = "Chromium" }, properties = { screen = 1, tag = screen[1].tags[2]} })
+  table.insert(awful.rules.rules, { rule = { class = "Slack" }, properties = { screen = 1, tag = screen[1].tags[3]} })
+
+  table.insert(awful.rules.rules, { rule = { class = "Google-chrome" }, properties = { screen = 2, tag = screen[2].tags[1]} })
+  table.insert(awful.rules.rules, { rule = { name = "livereload" }, properties = { screen = 2, tag = screen[2].tags[9]} })
+  table.insert(awful.rules.rules, { rule = { class = "Google-chrome", role = "pop-up" }, properties = { screen = 3, tag = screen[3].tags[4]} })
+
+  for s= 1, 3 do
+    for t =1,9 do
+      local name = "s" .. s .. "t" .. t
+      table.insert(awful.rules.rules, { rule = { name = name }, properties = { screen = s, tag = screen[s].tags[t]} })
+    end
+  end
+
+end
+
 -- }}}
 
 -- {{{ Signals

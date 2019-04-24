@@ -226,6 +226,8 @@ let g:ycm_extra_conf_globlist=['~/.vim/*']
 let g:ycm_global_ycm_extra_conf='~/.vim/ycm_extra_conf.py'
 let g:AutoPairsMultilineClose=0
 
+let g:vaxe_set_makeprg=0
+
 if filereadable(expand("compile_commands.json"))
   autocmd FileType cpp map  :call rtags#JumpTo(g:SAME_WINDOW)<CR>
   autocmd FileType h map  :call rtags#JumpTo(g:SAME_WINDOW)<CR>
