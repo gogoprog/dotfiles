@@ -5,7 +5,7 @@ relativeDir=`realpath --relative-to="$HOME/code" "$currentDir"`
 url="http://localhost:8000/$relativeDir/src"
 
 google-chrome-stable --auto-open-devtools-for-tabs $url &
-urxvtc -title s3t1 -hold -e tmux new-session\; send-keys 'vim' Enter &
+urxvtc -title vimDev -hold -e tmux new-session\; send-keys 'vim' Enter &
+urxvtc -title termDev &
+urxvtc -title termDev &
 urxvtc -hold -e livereload . -x hx &
-urxvtc -title s2t2 &
-urxvtc -title s2t2 &
