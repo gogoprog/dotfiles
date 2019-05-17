@@ -229,8 +229,8 @@ let g:AutoPairsMultilineClose=0
 let g:vaxe_set_makeprg=0
 
 if filereadable(expand("compile_commands.json"))
-  autocmd FileType cpp map  :call rtags#JumpTo(g:SAME_WINDOW)<CR>
-  autocmd FileType h map  :call rtags#JumpTo(g:SAME_WINDOW)<CR>
-  autocmd FileType hpp map  :call rtags#JumpTo(g:SAME_WINDOW)<CR>
+  autocmd FileType cpp map  :ALEGoToDefinition<CR>
+  autocmd FileType h map  :ALEGoToDefinition<CR>
+  autocmd FileType hpp map  :ALEGoToDefinition<CR>
 endif
 
