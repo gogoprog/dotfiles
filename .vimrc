@@ -126,7 +126,8 @@ map f <Plug>(easymotion-bd-w)
 map ] :cd $PROJECT_ROOT <bar> Ack! 
 noremap <c-f> /
 noremap E :NERDTreeFind<CR>
-map <C-P> :cd $PROJECT_ROOT <bar> :Files<CR>
+map <C-P> :cd $PROJECT_ROOT <bar> :call fzf#vim#files('.', fzf#vim#with_preview())<CR>
+
 noremap <c-h> <c-i>
 noremap <silent> { :wincmd w<CR>
 nnoremap <silent> <c-i> :wincmd k<CR>
