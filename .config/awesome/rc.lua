@@ -612,10 +612,12 @@ client.connect_signal("manage", function (c)
         awful.placement.no_offscreen(c)
     end
 
-    gears.timer.start_new(0.1, function()
-      focus_under_mouse()
-      return false
-    end)
+    if c.class ~= "URXvt" then
+      gears.timer.start_new(0.1, function()
+        focus_under_mouse()
+        return false
+      end)
+    end
 end)
 
 -- Add a titlebar if titlebars_enabled is set to true in the rules.
