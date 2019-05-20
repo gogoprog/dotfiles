@@ -229,6 +229,15 @@ root.buttons(awful.util.table.join(
 ))
 -- }}}
 
+local focus_under_mouse = function() 
+    local c = mouse.object_under_pointer()
+    if c then
+      client.focus = c
+      c:raise()
+    end
+    return c
+end
+
 -- {{{ Key bindings
 globalkeys = awful.util.table.join(
     -- Take a screenshot
@@ -273,7 +282,9 @@ globalkeys = awful.util.table.join(
             awful.client.focus.global_bydirection("right")
             if client.focus then client.focus:raise() end
         end),
-    awful.key({ modkey,           }, "w", function () awful.util.mymainmenu:show() end,
+    awful.key({ modkey,           }, "w", function () 
+      awful.util.mymainmenu:show()
+    end,
               {description = "show main menu", group = "awesome"}),
  
  
@@ -385,67 +396,6 @@ globalkeys = awful.util.table.join(
     -- awful.key({ altkey, }, "h", function () if beautiful.fs then beautiful.fs.show(7) end end),
     -- awful.key({ altkey, }, "w", function () if beautiful.weather then beautiful.weather.show(7) end end),
 
-    -- ALSA volume control
-    awful.key({ altkey }, "Up",
-        function ()
-            os.execute(string.format("amixer set %s 1%%+", beautiful.volume.channel))
-            beautiful.volume.update()
-        end),
-    awful.key({ altkey }, "Down",
-        function ()
-            os.execute(string.format("amixer set %s 1%%-", beautiful.volume.channel))
-            beautiful.volume.update()
-        end),
-    awful.key({ altkey }, "m",
-        function ()
-            os.execute(string.format("amixer set %s toggle", beautiful.volume.togglechannel or beautiful.volume.channel))
-            beautiful.volume.update()
-        end),
-    awful.key({ altkey, "Control" }, "m",
-        function ()
-            os.execute(string.format("amixer set %s 100%%", beautiful.volume.channel))
-            beautiful.volume.update()
-        end),
-
-		awful.key({ altkey, "Control" }, "0",
-				function ()
-						os.execute(string.format("amixer -q set %s 0%%", beautiful.volume.channel))
-						beautiful.volume.update()
-				end),
-
-    -- MPD control
-    awful.key({ altkey, "Control" }, "Up",
-        function ()
-            awful.spawn.with_shell("mpc toggle")
-            beautiful.mpd.update()
-        end),
-    awful.key({ altkey, "Control" }, "Down",
-        function ()
-            awful.spawn.with_shell("mpc stop")
-            beautiful.mpd.update()
-        end),
-    awful.key({ altkey, "Control" }, "Left",
-        function ()
-            awful.spawn.with_shell("mpc prev")
-            beautiful.mpd.update()
-        end),
-    awful.key({ altkey, "Control" }, "Right",
-        function ()
-            awful.spawn.with_shell("mpc next")
-            beautiful.mpd.update()
-        end),
-    awful.key({ altkey }, "0",
-        function ()
-            local common = { text = "MPD widget ", position = "top_middle", timeout = 2 }
-            if beautiful.mpd.timer.started then
-                beautiful.mpd.timer:stop()
-                common.text = common.text .. lain.util.markup.bold("OFF")
-            else
-                beautiful.mpd.timer:start()
-                common.text = common.text .. lain.util.markup.bold("ON")
-            end
-            naughty.notify(common)
-        end),
 
     -- Copy primary to clipboard (terminals to gtk)
     awful.key({ modkey }, "c", function () awful.spawn("xsel | xsel -i -b") end),
@@ -500,7 +450,7 @@ clientkeys = awful.util.table.join(
             c:raise()
         end,
         {description = "toggle fullscreen", group = "client"}),
-    awful.key({ modkey, "Shift"   }, "c",      function (c) c:kill()                         end,
+    awful.key({ modkey, "Shift"   }, "c",      function (c) c:kill()  end,
               {description = "close", group = "client"}),
     awful.key({ modkey, "Control" }, "space",  awful.client.floating.toggle                     ,
               {description = "toggle floating", group = "client"}),
@@ -661,6 +611,11 @@ client.connect_signal("manage", function (c)
         -- Prevent clients from being unreachable after screen count changes.
         awful.placement.no_offscreen(c)
     end
+
+    gears.timer.start_new(0.1, function()
+      focus_under_mouse()
+      return false
+    end)
 end)
 
 -- Add a titlebar if titlebars_enabled is set to true in the rules.
