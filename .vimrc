@@ -78,6 +78,7 @@ Plugin 'tpope/vim-sleuth'
 Plugin 'chaoren/vim-wordmotion'
 Plugin 'lyuts/vim-rtags'
 Plugin 'gogoprog/vim-executer'
+Plugin 'gogoprog/vim-makefile-manager'
 
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -159,7 +160,9 @@ map <F3> :cc<CR>
 map <F4> :cn<CR>
 
 map <F5> :ExecuterRun<CR>
-map <F7> :Make<CR>
+
+map [15;2~ :MakefileManagerSelect<CR>
+map <F7> :MakefileManagerMake<CR>
 map <F9> :MinGDBToggleBP<CR>
 
 " Delete without yank
