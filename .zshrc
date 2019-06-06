@@ -94,3 +94,5 @@ bindkey -s '' 'urxvt &'
 
 eval "$(direnv hook zsh)"
 
+export MAKEFLAGS=-j`nproc`
+
