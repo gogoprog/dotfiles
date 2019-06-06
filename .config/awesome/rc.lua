@@ -229,7 +229,7 @@ root.buttons(awful.util.table.join(
 ))
 -- }}}
 
-local focus_under_mouse = function() 
+local focus_under_mouse = function()
     local c = mouse.object_under_pointer()
     if c then
       client.focus = c
@@ -612,12 +612,6 @@ client.connect_signal("manage", function (c)
         awful.placement.no_offscreen(c)
     end
 
-    if c.class ~= "URXvt" then
-      gears.timer.start_new(0.1, function()
-        focus_under_mouse()
-        return false
-      end)
-    end
 end)
 
 -- Add a titlebar if titlebars_enabled is set to true in the rules.
