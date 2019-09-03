@@ -1,4 +1,4 @@
-pushd ~/code/haxe/lib/openfl/tools
+pushd `haxelib path openfl | head -n 1`/tools
 haxe build.hxml && haxe tools.hxml && lime rebuild tools && lime rebuild linux
 popd
 
