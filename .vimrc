@@ -16,7 +16,7 @@ Plugin 'spf13/vim-colors'
 " Plugin 'tpope/vim-repeat'
 " Plugin 'rhysd/conflict-marker.vim'
 Plugin 'jiangmiao/auto-pairs'
-let g:AutoPairs={}
+let g:AutoPairs={'{':'}'}
 Plugin 'terryma/vim-multiple-cursors'
 " Plugin 'vim-scripts/sessionman.vim'
 " Plugin 'matchit.zip'
@@ -81,6 +81,7 @@ Plugin 'chaoren/vim-wordmotion'
 Plugin 'lyuts/vim-rtags'
 Plugin 'gogoprog/vim-executer'
 Plugin 'gogoprog/vim-makefile-manager'
+Plugin 'tikhomirov/vim-glsl'
 
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -235,6 +236,8 @@ let g:ycm_global_ycm_extra_conf='~/.vim/ycm_extra_conf.py'
 let g:AutoPairsMultilineClose=0
 
 let g:vaxe_set_makeprg=0
+let g:vaxe_no_automatic_hxml=1
+autocmd VimEnter * call vaxe#DefaultHxml()
 
 if filereadable(expand("compile_commands.json"))
   autocmd FileType cpp map  :ALEGoToDefinition<CR>
