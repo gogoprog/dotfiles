@@ -578,7 +578,7 @@ table.insert(awful.rules.rules, { rule = { name = "weechat" }, properties = { sc
 table.insert(awful.rules.rules, { rule = { class = "Chromium" }, properties = { screen = 1, tag = screen[1].tags[2]} })
 table.insert(awful.rules.rules, { rule = { class = "Slack" }, properties = { screen = 1, tag = screen[1].tags[3]} })
 table.insert(awful.rules.rules, { rule = { class = "Steam" }, properties = { screen = 1, tag = screen[1].tags[6]} })
-table.insert(awful.rules.rules, { rule = { class = "Skype" }, properties = { screen = 1, tag = screen[1].tags[9]} })
+table.insert(awful.rules.rules, { rule = { class = "Skype" }, properties = { screen = 1, tag = screen[1].tags[4]} })
 
 if screen:count() == 1 then
   table.insert(awful.rules.rules, { rule = { class = "Google-chrome" }, properties = { screen = 1, tag = screen[1].tags[5]} })
