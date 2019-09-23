@@ -3,3 +3,5 @@
 urxvtc -title weechat -e screen weechat &
 chromium &
 slack &
+skypeforlinux &
+
