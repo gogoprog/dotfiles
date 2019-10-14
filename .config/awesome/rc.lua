@@ -577,6 +577,7 @@ end
 table.insert(awful.rules.rules, { rule = { name = "weechat" }, properties = { screen = 1, tag = screen[1].tags[1]} })
 table.insert(awful.rules.rules, { rule = { class = "Chromium" }, properties = { screen = 1, tag = screen[1].tags[2]} })
 table.insert(awful.rules.rules, { rule = { class = "Slack" }, properties = { screen = 1, tag = screen[1].tags[3]} })
+table.insert(awful.rules.rules, { rule = { class = "discord" }, properties = { screen = 1, tag = screen[1].tags[3]} })
 table.insert(awful.rules.rules, { rule = { class = "Steam" }, properties = { screen = 1, tag = screen[1].tags[6]} })
 table.insert(awful.rules.rules, { rule = { class = "Skype" }, properties = { screen = 1, tag = screen[1].tags[4]} })
 
