@@ -3,6 +3,8 @@ keysym j = j J Left
 keysym l = l L Right
 keysym i = i I Up
 keysym k = k K Down
+keysym e = e E eacute egrave
+keysym a = a A agrave
+keysym u = u U ugrave
 keycode 108 = Meta_L
-
 
