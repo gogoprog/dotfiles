@@ -6,5 +6,6 @@ keysym k = k K Down
 keysym e = e E eacute egrave
 keysym a = a A agrave
 keysym u = u U ugrave
+keysym c = c C ccedilla
 keycode 108 = Meta_L
 
