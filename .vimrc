@@ -152,12 +152,14 @@ autocmd FileType java nnoremap <buffer> <C-K> :%!astyle --mode=java -A2 -U -Y -j
 autocmd FileType lua nnoremap <buffer> <C-K> gg=Gg;g;
 autocmd FileType xml nnoremap <buffer> <C-K> :%!xmllint --format --recover -<CR><Esc><Esc><Esc>g;g;
 
+
 map  :Commentary<CR>
 vmap <Tab> >gv
 vmap <S-Tab> <gv
 
 unmap <C-K>
-map <C-K> ggVG:pyf /usr/share/clang/clang-format.py<CR><Esc><Esc><Esc>g;g;
+map <C-K> :!clang-format -i %<CR><Esc><Esc><Esc>g;g;
+
 map o :e %:p:s,.h$,.X123X,:s,.cpp$,.h,:s,.X123X$,.cpp,<CR>
 
 map <F2> :cp<CR>
