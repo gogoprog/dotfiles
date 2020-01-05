@@ -15,7 +15,7 @@ local os      = { getenv = os.getenv, setlocale = os.setlocale }
 
 local theme                                     = {}
 theme.dir                                       = os.getenv("HOME") .. "/.config/awesome/themes/ggp"
-theme.wallpaper                                 = theme.dir .. "/wallpaper.jpg"
+theme.wallpaper                                 = theme.dir .. "/wall80.png"
 theme.font                                      = "xos4 Terminus 8"
 theme.fg_normal                                 = "#BBBBBB"
 theme.fg_focus                                  = "#78A4FF"

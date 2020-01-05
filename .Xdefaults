@@ -6,14 +6,17 @@ Xft.hinting: 1
 Xft.antialias: 1
 Xft.rgba: rgb
 
-urxvt*font: xft:Monaco:pixelsize=11
+urxvt*font: xft:Monaco for Powerline:pixelsize=13, xft:Monaco:pixelsize=13
+urxvt.utf8: true
+urxvt.locale: true
+urxvt.letterSpace: 0
 
 urxvt*transparent:true
-urxvt*shading:40
+urxvt*shading:80
 urxvt*background:Black
 
 urxvt*foreground: White
-urxvt*geometry: 80x24
+urxvt*geometry: 280x224
 urxvt*cursorBlink: true
 urxvt*cursorColor: #5eff24
 urxvt*saveLines: 20000

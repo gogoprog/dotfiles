@@ -92,7 +92,7 @@ let $PROJECT_ROOT = getcwd()
 
 set autoread
 au CursorHold,CursorHoldI * checktime
-set updatetime=1000
+set updatetime=100
 
 if exists('$TMUX')
     let &t_SI = "\<Esc>Ptmux;\<Esc>\e[5 q\<Esc>\\"
@@ -183,6 +183,7 @@ set cursorline
 set lazyredraw
 highlight clear SignColumn      " SignColumn should match background
 highlight clear LineNr          " Current line number row will have same background color in relative mode
+highlight LineNr ctermfg=grey ctermbg=none
 
 set backspace=indent,eol,start  " Backspace for dummies
 set linespace=0                 " No extra spaces between rows
