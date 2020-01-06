@@ -183,7 +183,6 @@ set cursorline
 set lazyredraw
 highlight clear SignColumn      " SignColumn should match background
 highlight clear LineNr          " Current line number row will have same background color in relative mode
-highlight LineNr ctermfg=grey ctermbg=none
 
 set backspace=indent,eol,start  " Backspace for dummies
 set linespace=0                 " No extra spaces between rows
@@ -228,6 +227,8 @@ let g:solarized_termtrans=1
 let g:solarized_contrast="normal"
 let g:solarized_visibility="normal"
 color solarized             " Load a colorscheme
+
+highlight LineNr ctermfg=grey ctermbg=none
 
 let g:airline#extensions#tabline#enabled = 1
 
