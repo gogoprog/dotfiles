@@ -6,7 +6,7 @@ Xft.hinting: 1
 Xft.antialias: 1
 Xft.rgba: rgb
 
-urxvt*font: xft:Monaco for Powerline:pixelsize=13, xft:Monaco:pixelsize=13
+urxvt*font: xft:JetBrains Mono:style=Regular:pixelsize=15, xft:Monaco for Powerline:pixelsize=13, xft:Monaco:pixelsize=13
 urxvt.utf8: true
 urxvt.locale: true
 urxvt.letterSpace: 0
