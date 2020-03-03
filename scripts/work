@@ -2,7 +2,7 @@
 
 currentDir=$PWD
 relativeDir=`realpath --relative-to="$HOME/code" "$currentDir"`
-url="http://localhost:8000/$relativeDir/src"
+url="http://localhost:8000/$relativeDir/"
 
 google-chrome-stable $url &
 urxvtc -title vimDev -hold -e tmux new-session\; send-keys 'vim' Enter &
