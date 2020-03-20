@@ -97,10 +97,11 @@ set updatetime=100
 if exists('$TMUX')
     let &t_SI = "\<Esc>Ptmux;\<Esc>\e[5 q\<Esc>\\"
     let &t_EI = "\<Esc>Ptmux;\<Esc>\e[2 q\<Esc>\\"
-    autocmd BufReadPost,FileReadPost,BufNewFile * call system("tmux rename-window " . expand("%"))
+    autocmd BufReadPost,FileReadPost,BufNewFile,BufEnter * call system("tmux rename-window \"vim [" . expand("%:p") . "]\"")
 else
     let &t_SI = "\e[5 q"
     let &t_EI = "\e[2 q"
+    let &titlestring = "vim [" . expand("%:p") . "]"
 endif
 let &t_SR = "\<Esc>[4 q"
 
