@@ -1,0 +1,9 @@
+#!/bin/bash
+
+pushd `haxelib path openfl | head -n 1`
+git checkout $1
+popd
+
+pushd `haxelib path lime | head -n 2 | tail -n 1`
+git checkout $1
+popd

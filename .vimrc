@@ -243,7 +243,6 @@ let g:AutoPairsMultilineClose=0
 
 let g:vaxe_set_makeprg=0
 let g:vaxe_no_automatic_hxml=1
-autocmd VimEnter * call vaxe#DefaultHxml()
 
 if filereadable(expand("compile_commands.json"))
   autocmd FileType cpp map  :ALEGoToDefinition<CR>
