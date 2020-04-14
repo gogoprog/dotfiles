@@ -35,7 +35,7 @@ source $ZSH/oh-my-zsh.sh
 
 # Customize to your needs...
 export PATH="$PATH:$HOME/scripts:$HOME/code/scripts"
-export UNITY=/opt/Unity
+export PATH=~/code/Android/Sdk/tools:~/code/Android/Sdk/tools/bin/:$PATH
 export ANDROID_HOME=~/code/Android/Sdk
 export ANDROID_NDK=/opt/android-ndk
 

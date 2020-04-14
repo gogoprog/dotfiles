@@ -250,3 +250,4 @@ if filereadable(expand("compile_commands.json"))
   autocmd FileType hpp map  :ALEGoToDefinition<CR>
 endif
 
+command! CloseOthers %bd|e#|bd#
