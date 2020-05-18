@@ -581,6 +581,8 @@ table.insert(awful.rules.rules, { rule = { class = "discord" }, properties = { s
 table.insert(awful.rules.rules, { rule = { class = "Steam" }, properties = { screen = 1, tag = screen[1].tags[6]} })
 table.insert(awful.rules.rules, { rule = { class = "Skype" }, properties = { screen = 1, tag = screen[1].tags[4]} })
 
+local screen_lookup = {1, 2, 3}
+
 if screen:count() == 1 then
   table.insert(awful.rules.rules, { rule = { class = "Google-chrome" }, properties = { screen = 1, tag = screen[1].tags[5]} })
   table.insert(awful.rules.rules, { rule = { class = "Google-chrome", role = "pop-up" }, properties = { screen = 1, tag = screen[1].tags[5]} })
@@ -590,11 +592,11 @@ if screen:count() == 1 then
 end
 
 if screen:count() == 3 then
-  table.insert(awful.rules.rules, { rule = { class = "Google-chrome" }, properties = { screen = 2, tag = screen[2].tags[1]} })
-  table.insert(awful.rules.rules, { rule = { class = "Google-chrome", role = "pop-up" }, properties = { screen = 3, tag = screen[3].tags[4]} })
-  table.insert(awful.rules.rules, { rule = { name = "livereload" }, properties = { screen = 2, tag = screen[2].tags[9]} })
-  table.insert(awful.rules.rules, { rule = { name = "termDev" }, properties = { screen = 2, tag = screen[2].tags[2]} })
-  table.insert(awful.rules.rules, { rule = { name = "vimDev" }, properties = { screen = 3, tag = screen[3].tags[1]} })
+  table.insert(awful.rules.rules, { rule = { class = "Google-chrome" }, properties = { screen = screen_lookup[2], tag = screen[screen_lookup[2]].tags[1]} })
+  table.insert(awful.rules.rules, { rule = { class = "Google-chrome", role = "pop-up" }, properties = { screen = screen_lookup[3], tag = screen[screen_lookup[3]].tags[4]} })
+  table.insert(awful.rules.rules, { rule = { name = "livereload" }, properties = { screen = screen_lookup[2], tag = screen[screen_lookup[2]].tags[9]} })
+  table.insert(awful.rules.rules, { rule = { name = "termDev" }, properties = { screen = screen_lookup[2], tag = screen[screen_lookup[2]].tags[2]} })
+  table.insert(awful.rules.rules, { rule = { name = "vimDev" }, properties = { screen = screen_lookup[3], tag = screen[screen_lookup[3]].tags[1]} })
 end
 
 -- }}}
