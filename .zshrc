@@ -96,3 +96,10 @@ eval "$(direnv hook zsh)"
 
 export MAKEFLAGS=-j`nproc`
 
+function cd() {
+    if [ ! -f "$1" ]; then
+        builtin cd $1
+    else
+        builtin cd `dirname $1`
+    fi
+}
