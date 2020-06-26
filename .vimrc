@@ -238,7 +238,10 @@ highlight LineNr ctermfg=grey ctermbg=none
 let g:airline#extensions#tabline#enabled = 1
 
 
-let g:ale_cpp_clangcheck_options="-std=c++17"
+let g:ale_linters = {
+\   'cpp': ['clangtidy', 'clangd'],
+\}
+
 let g:ycm_confirm_extra_conf=0
 let g:ycm_extra_conf_globlist=['~/.vim/*']
 let g:ycm_global_ycm_extra_conf='~/.vim/ycm_extra_conf.py'
