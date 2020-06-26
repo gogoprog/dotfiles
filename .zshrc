@@ -29,7 +29,7 @@ DISABLE_AUTO_UPDATE="true"
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(archlinux git ant sublime svn fzf-zsh)
+plugins=(archlinux git sublime svn fzf-zsh zsh-autosuggestions)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -40,7 +40,7 @@ export ANDROID_HOME=~/code/Android/Sdk
 export ANDROID_NDK=/opt/android-ndk
 
 ZSH_THEME_GIT_PROMPT_PREFIX=" [%{%B%F{yellow}%}"
-
+ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=24"
 
 PROMPT='%{%f%k%b%}
 %{%B%F{green}%}%n%{%B%F{blue}%}@%{%B%F{cyan}%}%m%{%B%F{green}%} %{%b%F{yellow}%}%~%{%B%F{green}%}$(git_prompt_info)%{%f%k%b%}
