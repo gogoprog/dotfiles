@@ -42,6 +42,7 @@ export ANDROID_NDK=/opt/android-ndk
 ZSH_THEME_GIT_PROMPT_PREFIX=" [%{%B%F{yellow}%}"
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=24"
 ZSH_AUTOSUGGEST_STRATEGY=(completion history)
+ZSH_AUTOSUGGEST_USE_ASYNC=1
 
 PROMPT='%{%f%k%b%}
 %{%B%F{green}%}%n%{%B%F{blue}%}@%{%B%F{cyan}%}%m%{%B%F{green}%} %{%b%F{yellow}%}%~%{%B%F{green}%}$(git_prompt_info)%{%f%k%b%}
