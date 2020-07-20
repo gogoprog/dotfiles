@@ -40,6 +40,7 @@ export ANDROID_HOME=~/code/Android/Sdk
 export ANDROID_NDK=/opt/android-ndk
 
 ZSH_THEME_GIT_PROMPT_PREFIX=" [%{%B%F{yellow}%}"
+ZSH_THEME_GIT_PROMPT_SUFFIX="%{%B%F{green}%}]"
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=24"
 ZSH_AUTOSUGGEST_STRATEGY=(completion history)
 ZSH_AUTOSUGGEST_USE_ASYNC=1
