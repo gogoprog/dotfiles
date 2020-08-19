@@ -82,6 +82,8 @@ Plugin 'lyuts/vim-rtags'
 Plugin 'gogoprog/vim-executer'
 Plugin 'gogoprog/vim-makefile-manager'
 Plugin 'tikhomirov/vim-glsl'
+Plugin 'alemigliardi/vim-combo'
+Plugin 'frazrepo/vim-rainbow'
 
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -257,3 +259,5 @@ if findfile('compile_commands.json', '**') != ""
 endif
 
 command! CloseOthers %bd|e#|bd#
+
+let g:rainbow_active = 1
