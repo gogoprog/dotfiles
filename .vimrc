@@ -17,7 +17,8 @@ Plugin 'spf13/vim-colors'
 " Plugin 'rhysd/conflict-marker.vim'
 Plugin 'jiangmiao/auto-pairs'
 let g:AutoPairs={'{':'}'}
-Plugin 'terryma/vim-multiple-cursors'
+" Plugin 'terryma/vim-multiple-cursors'
+Plugin 'mg979/vim-visual-multi'
 " Plugin 'vim-scripts/sessionman.vim'
 " Plugin 'matchit.zip'
 Plugin 'vim-airline/vim-airline'
@@ -261,3 +262,7 @@ endif
 command! CloseOthers %bd|e#|bd#
 
 let g:rainbow_active = 1
+
+let g:VM_maps = {}
+let g:VM_maps['i'] = '<Space>'
+
