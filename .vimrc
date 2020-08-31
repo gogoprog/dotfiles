@@ -85,6 +85,7 @@ Plugin 'gogoprog/vim-makefile-manager'
 Plugin 'tikhomirov/vim-glsl'
 Plugin 'alemigliardi/vim-combo'
 Plugin 'frazrepo/vim-rainbow'
+Plugin 'jeroenbourgois/vim-actionscript'
 
 call vundle#end()            " required
 filetype plugin indent on    " required
