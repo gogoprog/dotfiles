@@ -229,6 +229,8 @@ set splitbelow                  " Puts new split windows to the bottom of the cu
 set hidden                      " Allow unsaved modified buffers
 set autowrite                   " Required by auto completion
 
+set timeoutlen=10
+
 syntax on
 
 let g:solarized_termcolors=256
