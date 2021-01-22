@@ -85,10 +85,21 @@ bindkey '' fzf-file-widget
 function tvim () {
     if [ "$TMUX" = "" ]; then
         tmux new-session\; send-keys 'vim' Enter
+    else
+        vim
+    fi
+}
+
+function tvim_main () {
+    if [ "$TMUX" = "" ]; then
+        tmux new-session\; send-keys 'vim --servername main' Enter
+    else
+        vim --servername main
     fi
 }
 
 bindkey -s '[11~' 'tvim'
+bindkey -s '[23~' 'tvim_main'
 
 bindkey -s '' 'urxvt &'
 
