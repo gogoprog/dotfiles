@@ -130,6 +130,7 @@ inoremap <c-s> <Esc>:w<CR>l
 vnoremap <c-s> <Esc>:w<CR>
 
 map f <Plug>(easymotion-bd-w)
+map F :cd $PROJECT_ROOT <bar> Ack! <cword> 
 map ] :cd $PROJECT_ROOT <bar> Ack! 
 noremap <c-f> /
 noremap E :NERDTreeFind<CR>
