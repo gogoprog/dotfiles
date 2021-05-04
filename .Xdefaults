@@ -39,3 +39,7 @@ urxvt.keysym.C-Tab: \033{
 urxvt.keysym.Control-Shift-F: \033]
 urxvt*iso14755: False
 urxvt*iso14755_52: False
+
+URxvt*scrollTtyOutput:      false
+URxvt*scrollWithBuffer:     true
+URxvt*scrollTtyKeypress:    true
