@@ -1,0 +1,4 @@
+#!/bin/bash
+
+export PATH=/opt/haxe3:${PATH}
+export HAXE_STD_PATH=/opt/haxe3/std
