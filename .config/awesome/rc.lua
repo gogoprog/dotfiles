@@ -582,7 +582,7 @@ for s=1,screen:count() do
 end
 
 table.insert(awful.rules.rules, { rule = { name = "weechat" }, properties = { screen = 1, tag = screen[1].tags[1]} })
-table.insert(awful.rules.rules, { rule = { class = "Chromium" }, properties = { screen = 1, tag = screen[1].tags[2]} })
+table.insert(awful.rules.rules, { rule = { class = "Google-chrome" }, properties = { screen = 1, tag = screen[1].tags[2]} })
 table.insert(awful.rules.rules, { rule = { class = "Slack" }, properties = { screen = 1, tag = screen[1].tags[3]} })
 table.insert(awful.rules.rules, { rule = { class = "discord" }, properties = { screen = 1, tag = screen[1].tags[3]} })
 table.insert(awful.rules.rules, { rule = { class = "Steam" }, properties = { screen = 1, tag = screen[1].tags[6]} })
@@ -591,16 +591,16 @@ table.insert(awful.rules.rules, { rule = { class = "Skype" }, properties = { scr
 local screen_lookup = {1, 2, 3}
 
 if screen:count() == 1 then
-  table.insert(awful.rules.rules, { rule = { class = "Google-chrome" }, properties = { screen = 1, tag = screen[1].tags[5]} })
-  table.insert(awful.rules.rules, { rule = { class = "Google-chrome", role = "pop-up" }, properties = { screen = 1, tag = screen[1].tags[5]} })
+  table.insert(awful.rules.rules, { rule = { class = "Chromium" }, properties = { screen = 1, tag = screen[1].tags[5]} })
+  table.insert(awful.rules.rules, { rule = { class = "Chromium", role = "pop-up" }, properties = { screen = 1, tag = screen[1].tags[5]} })
   table.insert(awful.rules.rules, { rule = { name = "livereload" }, properties = { screen = 1, tag = screen[1].tags[9]} })
   table.insert(awful.rules.rules, { rule = { name = "termDev" }, properties = { screen = 1, tag = screen[1].tags[6]} })
   table.insert(awful.rules.rules, { rule = { name = "vimDev" }, properties = { screen = 1, tag = screen[1].tags[4]} })
 end
 
 if screen:count() == 3 then
-  table.insert(awful.rules.rules, { rule = { class = "Google-chrome" }, properties = { screen = screen_lookup[2], tag = screen[screen_lookup[2]].tags[1]} })
-  table.insert(awful.rules.rules, { rule = { class = "Google-chrome", role = "pop-up" }, properties = { screen = screen_lookup[3], tag = screen[screen_lookup[3]].tags[4]} })
+  table.insert(awful.rules.rules, { rule = { class = "Chromium" }, properties = { screen = screen_lookup[2], tag = screen[screen_lookup[2]].tags[1]} })
+  table.insert(awful.rules.rules, { rule = { class = "Chromium", role = "pop-up" }, properties = { screen = screen_lookup[3], tag = screen[screen_lookup[3]].tags[4]} })
   table.insert(awful.rules.rules, { rule = { name = "livereload" }, properties = { screen = screen_lookup[2], tag = screen[screen_lookup[2]].tags[9]} })
   table.insert(awful.rules.rules, { rule = { name = "termDev" }, properties = { screen = screen_lookup[2], tag = screen[screen_lookup[2]].tags[2]} })
   table.insert(awful.rules.rules, { rule = { name = "vimDev" }, properties = { screen = screen_lookup[3], tag = screen[screen_lookup[3]].tags[1]} })
