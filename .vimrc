@@ -255,11 +255,11 @@ let g:AutoPairsMultilineClose=0
 let g:vaxe_set_makeprg=0
 let g:vaxe_no_automatic_hxml=1
 
-if findfile('compile_commands.json', '**') != ""
-  autocmd FileType cpp map  :ALEGoToDefinition<CR>
-  autocmd FileType h map  :ALEGoToDefinition<CR>
-  autocmd FileType hpp map  :ALEGoToDefinition<CR>
-endif
+" if findfile('compile_commands.json', '**') != ""
+  " autocmd FileType cpp map  :ALEGoToDefinition<CR>
+  " autocmd FileType h map  :ALEGoToDefinition<CR>
+  " autocmd FileType hpp map  :ALEGoToDefinition<CR>
+" endif
 
 command! CloseOthers %bd|e#|bd#
 

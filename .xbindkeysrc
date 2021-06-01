@@ -15,6 +15,12 @@
 "maim -s ~/screenshots/$(date +%Y-%m-%d_%H:%M:%S).png"
    m:0x0 + c:107
 
+"xbacklight -inc 5"
+   XF86MonBrightnessUp
+
+"xbacklight -dec 5"
+   XF86MonBrightnessDown
+
 ##################################
 # End of xbindkeys configuration #
 ##################################
