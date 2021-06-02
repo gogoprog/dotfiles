@@ -118,3 +118,5 @@ function cd() {
         builtin cd `dirname $1`
     fi
 }
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
