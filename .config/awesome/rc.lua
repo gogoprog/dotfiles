@@ -588,7 +588,7 @@ table.insert(awful.rules.rules, { rule = { class = "discord" }, properties = { s
 table.insert(awful.rules.rules, { rule = { class = "Steam" }, properties = { screen = 1, tag = screen[1].tags[6]} })
 table.insert(awful.rules.rules, { rule = { class = "Skype" }, properties = { screen = 1, tag = screen[1].tags[4]} })
 
-local screen_lookup = {1, 2, 3}
+local screen_lookup = {1, 3, 2}
 
 if screen:count() == 1 then
   table.insert(awful.rules.rules, { rule = { class = "Chromium" }, properties = { screen = 1, tag = screen[1].tags[5]} })
