@@ -173,9 +173,11 @@ map <F4> :cn<CR>
 
 
 map [28~ :ExecuterSelectExecutable<CR>:ExecuterSelectWorkingDirectory<CR>
+map [1;2R :ExecuterSelectExecutable<CR>:ExecuterSelectWorkingDirectory<CR>
 map <F5> :ExecuterRun<CR>
 
 map [31~ :MakefileManagerSelect<CR>
+map [15;2~ :MakefileManagerSelect<CR>
 map <F7> :MakefileManagerMake<CR>
 
 map <F9> :MinGDBToggleBP<CR>
