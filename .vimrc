@@ -182,7 +182,7 @@ map <F7> :MakefileManagerMake<CR>
 
 map <F9> :MinGDBToggleBP<CR>
 
-map <F10> :silent !qtcreator -client %:p<CR>
+map <F10> :silent !qtcreator -client %:p<CR>:redraw!<CR>
 
 " Delete without yank
 nnoremap DD "_dd

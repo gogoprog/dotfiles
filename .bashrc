@@ -46,3 +46,5 @@ PS1="\[$txtgrn\]\u\[$txtrst\]@\[$txtblu\]\h\[$txtrst\]:\w\[$txtrst\] \$\[$txtrst
 
 # paths
 export PATH="$PATH:/home/gogoprog/code/scripts"
+
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
