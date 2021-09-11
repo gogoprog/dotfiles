@@ -71,6 +71,7 @@ Plugin 'tpope/vim-dispatch'
 Plugin 'leafgarland/typescript-vim'
 Plugin 'mileszs/ack.vim'
 " Plugin 'Valloric/YouCompleteMe'
+Plugin 'tabnine/YouCompleteMe'
 Plugin 'codota/tabnine-vim'
 set rtp+=~/.oh-my-zsh/custom/plugins/fzf
 Plugin 'junegunn/fzf.vim'
