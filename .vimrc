@@ -255,6 +255,11 @@ let g:AutoPairsMultilineClose=0
 let g:vaxe_set_makeprg=0
 let g:vaxe_no_automatic_hxml=1
 
+
+let g:ale_linters = {
+\   'cpp': ['clangtidy', 'clangd'],
+\}
+
 function SetupALE()
   if findfile('compile_commands.json', '.') != ""
     autocmd FileType cpp map  :ALEGoToDefinition<CR>
