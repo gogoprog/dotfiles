@@ -72,7 +72,7 @@ Plugin 'leafgarland/typescript-vim'
 Plugin 'mileszs/ack.vim'
 " Plugin 'Valloric/YouCompleteMe'
 Plugin 'tabnine/YouCompleteMe'
-Plugin 'codota/tabnine-vim'
+" Plugin 'codota/tabnine-vim'
 set rtp+=~/.oh-my-zsh/custom/plugins/fzf
 Plugin 'junegunn/fzf.vim'
 Plugin 'mechatroner/minimal_gdb'
