@@ -394,7 +394,7 @@ globalkeys = awful.util.table.join(
               {description = "restore minimized", group = "client"}),
 
     -- Dropdown application
-    awful.key({ "Control" }, "`", function () awful.screen.focused().quake:toggle() end),
+    -- awful.key({ "Control" }, "`", function () awful.screen.focused().quake:toggle() end),
 
     -- Widgets popups
     -- awful.key({ altkey, }, "c", function () lain.widgets.calendar.show(7) end),
@@ -572,6 +572,8 @@ awful.rules.rules = {
           -- properties = { maximized = true } },
     { rule = { class = "URxvt" },
           properties = { focus = true } },
+    { rule = { class = "Guake" },
+          properties = { focus = true, floating = true } },
 }
 
 for s=1,screen:count() do

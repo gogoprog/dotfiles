@@ -7,4 +7,5 @@ xmodmap ~/.xmodmap
 xbindkeys
 numlockx &
 serve-code &
+barrier &
 exec awesome
