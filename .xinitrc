@@ -8,4 +8,5 @@ xbindkeys
 numlockx &
 serve-code &
 barrier &
+guake &
 exec awesome
