@@ -183,7 +183,12 @@ map <F7> :MakefileManagerMake<CR>
 
 map <F9> :MinGDBToggleBP<CR>
 
-map <F10> :silent !qtcreator -client %:p<CR>:redraw!<CR>
+function OpenExternal()
+  :execute ":silent !qtcreator -client %:p:" . line('.')
+  :redraw!
+endfunction
+
+map <F10> :call OpenExternal()<CR>
 
 " Delete without yank
 nnoremap DD "_dd
