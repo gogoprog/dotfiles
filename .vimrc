@@ -166,7 +166,33 @@ vmap <S-Tab> <gv
 unmap <C-K>
 map <C-K> :!clang-format -i %<CR><Esc><Esc><Esc>g;g;
 
-map o :e %:p:s,.h$,.X123X,:s,.cpp$,.h,:s,.X123X$,.cpp,<CR>
+function ToggleHeaderUnit()
+  let name = expand("%:r")
+  let extension = expand("%:e")
+  if (extension == "hpp" || extension == "h")
+    let new_file = name . ".cpp"
+    if filereadable(new_file)
+      :execute ":e " . new_file
+    else
+      let new_file = name . ".c"
+      if filereadable(new_file)
+        :execute ":e " . new_file
+      endif
+    endif
+  else
+    let new_file = name . ".h"
+    if filereadable(new_file)
+      :execute ":e " . new_file
+    else
+      let new_file = name . ".hpp"
+      if filereadable(new_file)
+        :execute ":e " . new_file
+      endif
+    endif
+  endif
+endfunction
+
+map o :call ToggleHeaderUnit()<CR>
 
 map <F2> :cp<CR>
 map <F3> :cc<CR>
