@@ -157,6 +157,8 @@ autocmd FileType java nnoremap <buffer> <C-K> :%!astyle --mode=java -A2 -U -Y -j
 autocmd FileType lua nnoremap <buffer> <C-K> gg=Gg;g;
 autocmd FileType xml nnoremap <buffer> <C-K> :%!xmllint --format --recover -<CR><Esc><Esc><Esc>g;g;
 autocmd FileType typescript set errorformat=%.%#\ ERROR\ in\ %f(%l\\,%.%#
+autocmd BufRead,BufNewFile *.fs set syntax=glsl
+autocmd BufRead,BufNewFile *.vs set syntax=glsl
 
 
 map  :Commentary<CR>
