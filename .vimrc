@@ -171,7 +171,17 @@ map <C-K> :!clang-format -i %<CR><Esc><Esc><Esc>g;g;
 function ToggleHeaderUnit()
   let name = expand("%:r")
   let extension = expand("%:e")
-  if (extension == "hpp" || extension == "h")
+  if (extension == "vs")
+    let new_file = name . ".fs"
+    if filereadable(new_file)
+      :execute ":e " . new_file
+    end
+  elseif (extension == "fs")
+    let new_file = name . ".vs"
+    if filereadable(new_file)
+      :execute ":e " . new_file
+    end
+  elseif (extension == "hpp" || extension == "h")
     let new_file = name . ".cpp"
     if filereadable(new_file)
       :execute ":e " . new_file
