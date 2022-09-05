@@ -10,7 +10,20 @@ function liveruler.init(_naughty, _awful)
 end
 
 function liveruler.apply(klass, screen_index, tag_index)
-  naughty.notify({ text = "liveruler saving: " .. klass .. " " .. screen_index ..  " " .. tag_index})
+
+  for i,v in ipairs(awful.rules.rules) do
+    if v.rule ~= nil and v.rule.class == klass then
+      if v.properties ~= nil and v.properties.screen == screen_index then
+        if v.properties.tag == screen[screen_index].tags[tag_index] then
+          naughty.notify({ text = "liveruler remove rule: " .. klass .. " " .. screen_index ..  " " .. tag_index})
+          table.remove(awful.rules.rules, i)
+          return
+        end
+      end
+    end
+  end
+
+  naughty.notify({ text = "liveruler add rule: " .. klass .. " " .. screen_index ..  " " .. tag_index})
   table.insert(awful.rules.rules, { rule = { class = klass }, properties = { screen = screen_index, tag = screen[screen_index].tags[tag_index]} })
 end
 
