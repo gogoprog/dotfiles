@@ -49,7 +49,8 @@ PROMPT='%{%f%k%b%}
 %{%B%F{green}%}%n%{%B%F{blue}%}@%{%B%F{cyan}%}%m%{%B%F{green}%} %{%b%F{yellow}%}%~%{%B%F{green}%}$(git_prompt_info)%{%f%k%b%}
 %{%}$(_prompt_char)%{%} %#%{%f%k%b%} '
 
-RPROMPT='!%{%B%F{cyan}%}%!%{%f%k%b%}'
+# RPROMPT='!%{%B%F{cyan}%}%!%{%f%k%b%}'
+RPROMPT="[%D{%d/%m/%y} |%@]"
 
 autoload -Uz up-line-or-beginning-search
 autoload -Uz down-line-or-beginning-search
