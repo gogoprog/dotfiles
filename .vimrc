@@ -65,7 +65,6 @@ Plugin 'pangloss/vim-javascript'
 " Plugin 'cespare/vim-toml'
 " Plugin 'quentindecock/vim-cucumber-align-pipes'
 " Plugin 'saltstack/salt-vim'
-" Plugin 'jdonaldson/vaxe'
 Plugin 'OmniSharp/omnisharp-vim'
 Plugin 'tpope/vim-dispatch'
 Plugin 'leafgarland/typescript-vim'
@@ -125,6 +124,7 @@ map k <Down>
 map j <Left>
 noremap h i
 noremap <Space> <insert>
+noremap <Space> i
 
 nnoremap <c-s> :w<CR>
 inoremap <c-s> <Esc>:w<CR>l
@@ -292,16 +292,15 @@ let g:airline#extensions#tabline#enabled = 1
 
 let g:ycm_confirm_extra_conf=0
 let g:ycm_extra_conf_globlist=['~/.vim/*']
-let g:ycm_global_ycm_extra_conf='~/.vim/ycm_extra_conf.py'
+let g:ycm_show_diagnostics_ui = 0
+
 let g:AutoPairsMultilineClose=0
 
-let g:vaxe_set_makeprg=0
-let g:vaxe_no_automatic_hxml=1
+" let g:ale_linters = { 'cpp': ['clangtidy', 'clangd'] }
+let g:ale_linters = { 'cpp': ['clangtidy'] }
 
-
-let g:ale_linters = {
-\   'cpp': ['clangtidy', 'clangd'],
-\}
+let g:ale_cpp_clangd_options = '-std=c++20'
+let g:ale_cpp_clangtidy_extra_options = '--extra-arg=-std=c++20'
 
 function SetupALE()
   if findfile('compile_commands.json', '.') != ""
