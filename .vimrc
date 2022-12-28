@@ -215,9 +215,9 @@ map [28~ :ExecuterSelectExecutable<CR>:ExecuterSelectWorkingDirectory<CR>
 map [1;2R :ExecuterSelectExecutable<CR>:ExecuterSelectWorkingDirectory<CR>
 map <F5> :ExecuterRun<CR>
 
-map [31~ :MakefileManagerSelect<CR>
-map [15;2~ :MakefileManagerSelect<CR>
-map <F7> :MakefileManagerMake<CR>
+map [31~ :MMInteractiveSelect<CR>
+map [15;2~ :MMInteractiveSelect<CR>
+map <F7> :MMMake<CR>
 
 map <F9> :MinGDBToggleBP<CR>
 
@@ -296,10 +296,10 @@ let g:ycm_show_diagnostics_ui = 0
 
 let g:AutoPairsMultilineClose=0
 
-" let g:ale_linters = { 'cpp': ['clangtidy', 'clangd'] }
-let g:ale_linters = { 'cpp': ['clangtidy'] }
+let g:ale_linters = { 'cpp': ['clangtidy', 'clangd'] }
+" let g:ale_linters = { 'cpp': ['clangtidy'] }
 
-let g:ale_cpp_clangd_options = '-std=c++20'
+" let g:ale_cpp_clangd_options = '-std=c++20'
 let g:ale_cpp_clangtidy_extra_options = '--extra-arg=-std=c++20'
 
 function SetupALE()
