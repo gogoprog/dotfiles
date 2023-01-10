@@ -64,7 +64,7 @@ else
 endif
 let &t_SR = "\<Esc>[4 q"
 
-set secure exrc " Application-specific .vimrc
+" set secure exrc " Application-specific .vimrc
 set clipboard=unnamedplus " X11 Clipboard
 
 let g:ackprg = 'cd $PROJECT_ROOT && ag --nogroup --nocolor --column --smart-case -f'
@@ -331,3 +331,6 @@ tabnine:setup({
 })
 EOF
 
+if findfile('.vimrc', '.') != ""
+  exec "source .vimrc"
+endif
