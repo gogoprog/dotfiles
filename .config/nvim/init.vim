@@ -167,9 +167,7 @@ map <F2> :cp<CR>
 map <F3> :cc<CR>
 map <F4> :cn<CR>
 
-
-map [28~ :ExecuterSelectExecutable<CR>:ExecuterSelectWorkingDirectory<CR>
-map [1;2R :ExecuterSelectExecutable<CR>:ExecuterSelectWorkingDirectory<CR>
+map <S-F3> :ExecuterSelectExecutable<CR>
 map <F5> :ExecuterRun<CR>
 
 map <F17> :MMInteractiveSelect<CR>
