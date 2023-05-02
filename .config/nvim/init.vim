@@ -110,6 +110,7 @@ autocmd FileType javascript nnoremap <buffer> <C-K> :%!js-beautify --type js -<C
 autocmd FileType scss nnoremap <buffer> <C-K> :%!js-beautify --type css -s 2 -<CR><Esc><Esc><Esc>g;g;
 autocmd FileType css nnoremap <buffer> <C-K> :%!js-beautify --type css -s 2 -<CR><Esc><Esc><Esc>g;g;
 autocmd FileType haxe nnoremap <buffer> <C-K> :%!astyle --mode=cs -A2 -f -U -Y -j -o -O -xe -xg -xL -S -s4 -xj -xt1 -xW -z2<CR><Esc><Esc><Esc>g;g;
+autocmd FileType haxe setlocal commentstring=//\ %s
 autocmd FileType java nnoremap <buffer> <C-K> :%!astyle --mode=java -A2 -U -Y -j -o -O -xe -xg -xL -S -s4 -xj -xt1 -xW -z2<CR><Esc><Esc><Esc>g;g;
 autocmd FileType lua nnoremap <buffer> <C-K> gg=Gg;g;
 autocmd FileType xml nnoremap <buffer> <C-K> :%!xmllint --format --recover -<CR><Esc><Esc><Esc>g;g;
