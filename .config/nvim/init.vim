@@ -22,7 +22,7 @@ Plug 'w0rp/ale'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-commentary'
 Plug 'pangloss/vim-javascript'
-Plug 'OmniSharp/omnisharp-vim'
+" Plug 'OmniSharp/omnisharp-vim'
 Plug 'tpope/vim-dispatch'
 Plug 'leafgarland/typescript-vim'
 Plug 'mileszs/ack.vim'
@@ -41,6 +41,8 @@ Plug 'hrsh7th/cmp-vsnip'
 Plug 'hrsh7th/vim-vsnip'
 Plug 'hrsh7th/nvim-cmp'
 Plug 'tzachar/cmp-tabnine', { 'do': './install.sh' }
+
+" Plug 'eandrju/cellular-automaton.nvim'
 
 call plug#end()
 filetype plugin indent on    " required
@@ -103,7 +105,8 @@ nnoremap <silent> <c-l> :bn<CR>
 map <C-W> :bd<CR>
 
 autocmd FileType cs nnoremap <buffer> <C-]> :OmniSharpGotoDefinition<CR>
-autocmd FileType cs nnoremap <buffer> <C-K> :OmniSharpCodeFormat<CR>
+" autocmd FileType cs nnoremap <buffer> <C-K> :OmniSharpCodeFormat<CR>
+autocmd FileType cs nnoremap <buffer> <C-K> :%!astyle --mode=cs -A2 -f -U -Y -j -o -O -xe -xg -xL -S -s4 -xj -xt1 -xW -z2<CR><Esc><Esc><Esc>g;g;
 autocmd FileType json nnoremap <buffer> <C-K> :%!js-beautify -<CR><Esc><Esc><Esc>g;g;
 autocmd FileType html nnoremap <buffer> <C-K> :%!js-beautify --type html -s 2 -<CR><Esc><Esc><Esc>g;g;
 autocmd FileType javascript nnoremap <buffer> <C-K> :%!js-beautify --type js -<CR><Esc><Esc><Esc>g;g;
