@@ -104,9 +104,9 @@ nnoremap <silent> <c-j> :bp<CR>
 nnoremap <silent> <c-l> :bn<CR>
 map <C-W> :bd<CR>
 
-autocmd FileType cs nnoremap <buffer> <C-]> :OmniSharpGotoDefinition<CR>
+" autocmd FileType cs nnoremap <buffer> <C-]> :OmniSharpGotoDefinition<CR>
 " autocmd FileType cs nnoremap <buffer> <C-K> :OmniSharpCodeFormat<CR>
-autocmd FileType cs nnoremap <buffer> <C-K> :%!astyle --mode=cs -A2 -f -U -Y -j -o -O -xe -xg -xL -S -s4 -xj -xt1 -xW -z2<CR><Esc><Esc><Esc>g;g;
+autocmd FileType cs nnoremap <buffer> <C-K> :%!astyle --mode=cs -A1 -f -U -Y -j -o -O -S -s4 -z2 -N<CR><Esc><Esc><Esc>g;g;
 autocmd FileType json nnoremap <buffer> <C-K> :%!js-beautify -<CR><Esc><Esc><Esc>g;g;
 autocmd FileType html nnoremap <buffer> <C-K> :%!js-beautify --type html -s 2 -<CR><Esc><Esc><Esc>g;g;
 autocmd FileType javascript nnoremap <buffer> <C-K> :%!js-beautify --type js -<CR><Esc><Esc><Esc>g;g;
