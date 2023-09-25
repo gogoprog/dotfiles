@@ -42,6 +42,8 @@ Plug 'hrsh7th/vim-vsnip'
 Plug 'hrsh7th/nvim-cmp'
 Plug 'tzachar/cmp-tabnine', { 'do': './install.sh' }
 
+Plug 'wsdjeg/vim-fetch'
+
 " Plug 'eandrju/cellular-automaton.nvim'
 
 call plug#end()
@@ -281,56 +283,50 @@ let g:VM_maps = {}
 let g:VM_maps['i'] = '<Space>'
 
 
-" lua << EOF
-" require('tabnine').setup({
-"   disable_auto_comment=true,
-"   accept_keymap="<Tab>",
-"   debounce_ms = 300,
-"   suggestion_color = {gui = "#808080", cterm = 244}
-" })
-" EOF
-
 lua << EOF
-local cmp = require'cmp'
 
-cmp.setup({
-   snippet = {
-      -- REQUIRED - you must specify a snippet engine
-      expand = function(args)
-        vim.fn["vsnip#anonymous"](args.body) -- For `vsnip` users.
-      end,
+  local cmp = require'cmp'
+
+  cmp.setup({
+     snippet = {
+        -- REQUIRED - you must specify a snippet engine
+        expand = function(args)
+          vim.fn["vsnip#anonymous"](args.body) -- For `vsnip` users.
+        end,
+      },
+     mapping = cmp.mapping.preset.insert({
+          ['<C-b>'] = cmp.mapping.scroll_docs(-4),
+          ['<C-f>'] = cmp.mapping.scroll_docs(4),
+          ['<C-Space>'] = cmp.mapping.complete(),
+          ['<C-e>'] = cmp.mapping.abort(),
+          ['<CR>'] = cmp.mapping.confirm({ select = false }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
+          ["<Tab>"] = cmp.mapping(function(fallback)
+                if cmp.visible() then
+                  cmp.select_next_item()
+                else
+                  fallback()
+                end
+              end, { "i", "s" }),
+              }),
+    sources = {
+    { name = 'cmp_tabnine' },
     },
-   mapping = cmp.mapping.preset.insert({
-        ['<C-b>'] = cmp.mapping.scroll_docs(-4),
-        ['<C-f>'] = cmp.mapping.scroll_docs(4),
-        ['<C-Space>'] = cmp.mapping.complete(),
-        ['<C-e>'] = cmp.mapping.abort(),
-        ['<CR>'] = cmp.mapping.confirm({ select = false }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
-        ["<Tab>"] = cmp.mapping(function(fallback)
-              if cmp.visible() then
-                cmp.select_next_item()
-              else
-                fallback()
-              end
-            end, { "i", "s" }),
-            }),
-  sources = {
-  { name = 'cmp_tabnine' },
-  },
-})
+  })
 
-local tabnine = require('cmp_tabnine.config')
+  local tabnine = require('cmp_tabnine.config')
 
-tabnine:setup({
-  max_lines = 1000,
-  max_num_results = 20,
-  sort = true,
-  run_on_every_keystroke = true,
-  snippet_placeholder = '..',
-  ignored_file_types = {
-  },
-  show_prediction_strength = false
-})
+  tabnine:setup({
+    max_lines = 1000,
+    max_num_results = 20,
+    sort = true,
+    run_on_every_keystroke = true,
+    snippet_placeholder = '..',
+    ignored_file_types = {
+      -- default is not to ignore
+      -- uncomment to ignore in lua:
+      -- lua = true
+      }
+  })
 EOF
 
 if findfile('.vimrc', '.') != ""
