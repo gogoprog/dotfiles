@@ -44,6 +44,12 @@ Plug 'tzachar/cmp-tabnine', { 'do': './install.sh' }
 
 Plug 'wsdjeg/vim-fetch'
 
+Plug 'neovim/nvim-lspconfig'
+Plug 'ray-x/guihua.lua', {'do': 'cd lua/fzy && make' }
+Plug 'ray-x/navigator.lua'
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+
+
 " Plug 'eandrju/cellular-automaton.nvim'
 
 call plug#end()
@@ -332,3 +338,6 @@ EOF
 if findfile('.vimrc', '.') != ""
   exec "source .vimrc"
 endif
+
+lua require'navigator'.setup()
+
