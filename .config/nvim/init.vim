@@ -482,8 +482,10 @@ local key_maps = {
 require'navigator'.setup({
     default_mapping = false,
     keymaps = key_maps,
-    format_on_save = false,
     lsp = {
+        code_action = false,
+        code_lens = false,
+        format_on_save = false,
         hover = {
           enable = false,
           keymap = {
