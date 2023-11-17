@@ -12,7 +12,7 @@
    XF86AudioLowerVolume
 
 #screenshot
-"maim -s ~/screenshots/$(date +%Y-%m-%d_%H:%M:%S).png"
+"~/scripts/take-screenshot"
    m:0x0 + c:107
 
 "xbacklight -inc 5"
