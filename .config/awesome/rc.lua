@@ -583,14 +583,15 @@ for s=1,screen:count() do
   end
 end
 
-table.insert(awful.rules.rules, { rule = { name = "weechat" }, properties = { screen = 1, tag = screen[1].tags[1]} })
-table.insert(awful.rules.rules, { rule = { class = "Google-chrome" }, properties = { screen = 1, tag = screen[1].tags[2]} })
-table.insert(awful.rules.rules, { rule = { class = "Slack" }, properties = { screen = 1, tag = screen[1].tags[3]} })
-table.insert(awful.rules.rules, { rule = { class = "discord" }, properties = { screen = 1, tag = screen[1].tags[3]} })
-table.insert(awful.rules.rules, { rule = { class = "Steam" }, properties = { screen = 1, tag = screen[1].tags[6]} })
-table.insert(awful.rules.rules, { rule = { class = "Skype" }, properties = { screen = 1, tag = screen[1].tags[4]} })
+local screen_lookup = {2, 1, 3}
 
-local screen_lookup = {1, 3, 2}
+table.insert(awful.rules.rules, { rule = { name = "weechat" }, properties = { screen = screen_lookup[1], tag = screen[screen_lookup[1]].tags[1]} })
+table.insert(awful.rules.rules, { rule = { class = "Google-chrome" }, properties = { screen = screen_lookup[1], tag = screen[screen_lookup[1]].tags[2]} })
+table.insert(awful.rules.rules, { rule = { class = "Slack" }, properties = { screen = screen_lookup[1], tag = screen[screen_lookup[1]].tags[3]} })
+table.insert(awful.rules.rules, { rule = { class = "discord" }, properties = { screen = screen_lookup[1], tag = screen[screen_lookup[1]].tags[3]} })
+table.insert(awful.rules.rules, { rule = { class = "Steam" }, properties = { screen = screen_lookup[1], tag = screen[screen_lookup[1]].tags[6]} })
+table.insert(awful.rules.rules, { rule = { class = "Skype" }, properties = { screen = screen_lookup[1], tag = screen[screen_lookup[1]].tags[4]} })
+
 
 if screen:count() == 1 then
   table.insert(awful.rules.rules, { rule = { class = "Chromium" }, properties = { screen = 1, tag = screen[1].tags[5]} })
