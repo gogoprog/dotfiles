@@ -18,7 +18,7 @@ Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'easymotion/vim-easymotion'
 Plug 'flazz/vim-colorschemes'
-Plug 'w0rp/ale'
+" Plug 'w0rp/ale'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-commentary'
 Plug 'pangloss/vim-javascript'
@@ -128,7 +128,6 @@ autocmd FileType xml nnoremap <buffer> <C-K> :%!xmllint --format --recover -<CR>
 autocmd FileType typescript set errorformat=%.%#\ ERROR\ in\ %f(%l\\,%.%#
 autocmd BufRead,BufNewFile *.fs set syntax=glsl
 autocmd BufRead,BufNewFile *.vs set syntax=glsl
-
 
 map  :Commentary<CR>
 vmap <Tab> >gv
@@ -263,11 +262,11 @@ let g:ycm_show_diagnostics_ui = 0
 
 let g:AutoPairsMultilineClose=0
 
-let g:ale_linters = { 'cpp': ['clangtidy', 'clangd'] }
-" let g:ale_linters = { 'cpp': ['clangtidy'] }
+" let g:ale_linters = { 'cpp': ['clangtidy', 'clangd'] }
+let g:ale_linters = { 'cpp': ['clangtidy'] }
 
-" let g:ale_cpp_clangd_options = '-std=c++20'
-let g:ale_cpp_clangtidy_extra_options = '--extra-arg=-std=c++20'
+" let g:ale_cpp_clangd_options = '-std=c++23'
+let g:ale_cpp_clangtidy_extra_options = '--extra-arg=-std=c++2b'
 
 function SetupALE()
   if findfile('compile_commands.json', '.') != ""
@@ -414,14 +413,9 @@ local key_maps = {
     desc = 'toggle_diagnostics',
   },
   {
-    key = ']d',
-    func = vim.diagnostic.goto_next,
-    desc = 'next diagnostics',
-  },
-  {
-    key = '[d',
-    func = vim.diagnostic.goto_prev,
-    desc = 'prev diagnostics',
+    key = '<F3>',
+    func = vim.diagnostic.setqflist,
+    desc = 'list diagnostics',
   },
   {
     key = ']O',
@@ -486,6 +480,7 @@ require'navigator'.setup({
         code_action = false,
         code_lens = false,
         format_on_save = false,
+        display_diagnostic_qf = false,
         hover = {
           enable = false,
           keymap = {
@@ -503,6 +498,9 @@ require'navigator'.setup({
         }
       }
   })
+
+
+
 EOF
 
 if findfile('.vimrc', '.') != ""
