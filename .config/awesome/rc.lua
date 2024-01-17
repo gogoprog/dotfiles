@@ -26,7 +26,14 @@ local liveruler = require("liveruler")
 
 liveruler.init(naughty, awful)
 
-naughty.config.defaults['icon_size'] = 128
+beautiful.notification_icon_size = 128
+
+naughty.config.defaults['icon_size'] = 64
+naughty.config.defaults['width'] = 512
+naughty.config.defaults['max_width'] = 512
+naughty.config.defaults['height'] = 200
+naughty.config.defaults['font'] = "xos4 Terminus 22"
+naughty.config.defaults['icon'] = "/usr/share/icons/breeze-dark/actions/24/notifications.svg"
 
 -- {{{ Error handling
 if awesome.startup_errors then
