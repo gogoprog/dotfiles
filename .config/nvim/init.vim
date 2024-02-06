@@ -120,7 +120,7 @@ autocmd FileType html nnoremap <buffer> <C-K> :%!js-beautify --type html -s 2 -<
 autocmd FileType javascript nnoremap <buffer> <C-K> :%!js-beautify --type js -<CR><Esc><Esc><Esc>g;g;
 autocmd FileType scss nnoremap <buffer> <C-K> :%!js-beautify --type css -s 2 -<CR><Esc><Esc><Esc>g;g;
 autocmd FileType css nnoremap <buffer> <C-K> :%!js-beautify --type css -s 2 -<CR><Esc><Esc><Esc>g;g;
-autocmd FileType haxe nnoremap <buffer> <C-K> :%!astyle --mode=cs -A2 -f -U -Y -j -o -O -xe -xg -xL -S -s4 -xj -xt1 -xW -z2<CR><Esc><Esc><Esc>g;g;
+autocmd FileType haxe nnoremap <buffer> <C-K> :%!astyle --mode=js -A2 -f -U -Y -j -o -O -xe -xg -xL -S -s4 -xj -xt1 -xW -z2<CR><Esc><Esc><Esc>g;g;
 autocmd FileType haxe setlocal commentstring=//\ %s
 autocmd FileType java nnoremap <buffer> <C-K> :%!astyle --mode=java -A2 -U -Y -j -o -O -xe -xg -xL -S -s4 -xj -xt1 -xW -z2<CR><Esc><Esc><Esc>g;g;
 autocmd FileType lua nnoremap <buffer> <C-K> gg=Gg;g;
@@ -178,6 +178,7 @@ map <F2> :cp<CR>
 map <F3> :cc<CR>
 map <F4> :cn<CR>
 
+map <F15> :ExecuterSelectExecutable<CR>
 map <S-F3> :ExecuterSelectExecutable<CR>
 map <F5> :ExecuterRun<CR>
 
@@ -413,7 +414,7 @@ local key_maps = {
     desc = 'toggle_diagnostics',
   },
   {
-    key = '<F3>',
+    key = '<S-F1>',
     func = vim.diagnostic.setqflist,
     desc = 'list diagnostics',
   },
