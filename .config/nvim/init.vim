@@ -179,11 +179,11 @@ map <F3> :cc<CR>
 map <F4> :cn<CR>
 
 map <F15> :ExecuterSelectExecutable<CR>
-map <S-F3> :ExecuterSelectExecutable<CR>
+map <S-F5> :ExecuterSelectExecutable<CR>
 map <F5> :ExecuterRun<CR>
 
 map <F17> :MMInteractiveSelect<CR>
-map <S-F5> :MMInteractiveSelect<CR>
+map <S-F7> :MMInteractiveSelect<CR>
 map <F7> :MMMake<CR>
 
 map <F9> :MinGDBToggleBP<CR>
