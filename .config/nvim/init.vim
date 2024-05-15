@@ -100,6 +100,7 @@ vnoremap <c-s> <Esc>:w!<CR>
 map f <Plug>(easymotion-bd-w)
 map F :cd $PROJECT_ROOT <bar> Ack! <cword> 
 map ] :cd $PROJECT_ROOT <bar> Ack! 
+map <C-S-F> :cd $PROJECT_ROOT <bar> Ack! 
 noremap <c-f> /
 noremap E :NERDTreeFind<CR>
 map <C-P> :cd $PROJECT_ROOT <bar> :call fzf#vim#files('.', fzf#vim#with_preview())<CR>
@@ -508,4 +509,9 @@ if findfile('.vimrc', '.') != ""
   exec "source .vimrc"
 endif
 
+
+if exists('g:neovide')
+  :lua  vim.g.neovide_transparency=0.3
+  :set guifont=Source\ Code\ Pro:h10
+endif
 
