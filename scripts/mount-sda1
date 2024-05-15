@@ -1,0 +1,5 @@
+#!/bin/bash
+
+sudo cryptsetup open /dev/sda1 sda
+sudo mount /dev/mapper/sda /mnt/sda
+
