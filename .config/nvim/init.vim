@@ -131,6 +131,8 @@ autocmd BufRead,BufNewFile *.fs set syntax=glsl
 autocmd BufRead,BufNewFile *.vs set syntax=glsl
 
 map  :Commentary<CR>
+map <C-/> :Commentary<CR>
+
 vmap <Tab> >gv
 vmap <S-Tab> <gv
 
