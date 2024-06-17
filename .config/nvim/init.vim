@@ -481,7 +481,7 @@ require'navigator'.setup({
     default_mapping = false,
     keymaps = key_maps,
     lsp = {
-        code_action = false,
+      code_action = {enable=false},
         code_lens = false,
         format_on_save = false,
         display_diagnostic_qf = false,
