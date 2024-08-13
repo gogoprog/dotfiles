@@ -517,3 +517,7 @@ if exists('g:neovide')
   :set guifont=Source\ Code\ Pro:h10
 endif
 
+if !empty($SSH_CLIENT)
+  :colorscheme neonwave
+endif
+
