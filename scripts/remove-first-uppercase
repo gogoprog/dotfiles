@@ -1,0 +1,17 @@
+#!/bin/bash
+
+function join { local IFS="$1"; shift; echo "$*"; }
+
+for path in $(find . -type d -name "[[:upper:]]*"); do
+    parts=$(echo $path | tr "/" "\n")
+
+    result=""
+    for part in $parts; do
+        part="$(tr '[:upper:]' '[:lower:]' <<< ${part:0:1})${part:1}"
+        result+="${part}/"
+    done
+    result=${result::-1}
+
+    mv $path $result
+done
+

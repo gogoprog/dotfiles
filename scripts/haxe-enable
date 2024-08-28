@@ -1,0 +1,6 @@
+#!/bin/bash
+
+echo "Enabling Haxe $1"
+
+export PATH=/opt/haxe$1:${PATH}
+export HAXE_STD_PATH=/opt/haxe$1/std
