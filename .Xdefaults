@@ -6,7 +6,7 @@ Xft.hinting: 1
 Xft.antialias: 1
 Xft.rgba: rgb
 
-urxvt*font: xft:JetBrains Mono:style=Regular:pixelsize=15, xft:Monaco for Powerline:pixelsize=13, xft:Monaco:pixelsize=13
+urxvt*font: xft:JetBrains Mono:style=Regular:pixelsize=12, xft:Monaco for Powerline:pixelsize=12, xft:Monaco:pixelsize=12
 urxvt.utf8: true
 urxvt.locale: true
 urxvt.letterSpace: 0
@@ -31,6 +31,9 @@ URxvt.urlLauncher: /usr/bin/xdg-open
 URxvt.url-launcher: /usr/bin/xdg-open
 URxvt.matcher.button: 1
 URxvt.matcher.rend.0: Uline
+/* URxvt.matcher.pattern.1:  \\B(/\\S+?):(\\d+)(?=:|$) */
+URxvt.matcher.pattern.1:  \\B(/\\S+?):(\\d+)
+URxvt.matcher.launcher.1: nvim --server /tmp/nvim.main --remote $1:$2
 
 ! Keys
 urxvt.keysym.C-Tab: \033{

@@ -94,9 +94,9 @@ function tvim () {
 
 function tvim_main () {
     if [ "$TMUX" = "" ]; then
-        tmux new-session\; send-keys 'vim --servername main' Enter
+        tmux new-session\; send-keys 'nvim --listen /tmp/nvim.main' Enter
     else
-        vim --servername main
+        nvim --listen /tmp/nvim.main
     fi
 }
 
