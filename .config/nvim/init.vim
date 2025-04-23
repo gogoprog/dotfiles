@@ -19,7 +19,7 @@ Plug 'vim-airline/vim-airline-themes'
 Plug 'easymotion/vim-easymotion'
 Plug 'flazz/vim-colorschemes'
 " Plug 'w0rp/ale'
-Plug 'tpope/vim-fugitive'
+" Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-commentary'
 Plug 'pangloss/vim-javascript'
 " Plug 'OmniSharp/omnisharp-vim'
@@ -33,21 +33,25 @@ Plug 'chaoren/vim-wordmotion'
 Plug 'gogoprog/vim-executer'
 Plug 'gogoprog/vim-makefile-manager'
 Plug 'tikhomirov/vim-glsl'
-Plug 'alemigliardi/vim-combo'
+" Plug 'alemigliardi/vim-combo'
 Plug 'luochen1990/rainbow'
 Plug 'jeroenbourgois/vim-actionscript'
 " Plug 'codota/tabnine-nvim', { 'do': './dl_binaries.sh' }
 Plug 'hrsh7th/cmp-vsnip'
 Plug 'hrsh7th/vim-vsnip'
 Plug 'hrsh7th/nvim-cmp'
+Plug 'hrsh7th/cmp-nvim-lsp'
 Plug 'tzachar/cmp-tabnine', { 'do': './install.sh' }
 
 Plug 'wsdjeg/vim-fetch'
 
-Plug 'neovim/nvim-lspconfig'
 Plug 'ray-x/guihua.lua', {'do': 'cd lua/fzy && make' }
 Plug 'ray-x/navigator.lua'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+
+Plug 'williamboman/mason.nvim'
+Plug 'williamboman/mason-lspconfig.nvim'
+Plug 'neovim/nvim-lspconfig'
 
 
 " Plug 'eandrju/cellular-automaton.nvim'
@@ -107,6 +111,7 @@ map <C-P> :cd $PROJECT_ROOT <bar> :call fzf#vim#files('.', fzf#vim#with_preview(
 
 noremap <c-h> <c-i>
 noremap <silent> { :wincmd w<CR>
+noremap <silent> <C-Tab> :wincmd w<CR>
 nnoremap <silent> <c-i> :wincmd k<CR>
 nnoremap <silent> <c-k> :wincmd j<CR>
 nnoremap <silent> <c-j> :bp<CR>
@@ -318,6 +323,7 @@ lua << EOF
               end, { "i", "s" }),
               }),
     sources = {
+    { name = 'nvim_lsp' },
     { name = 'cmp_tabnine' },
     },
   })
@@ -502,6 +508,9 @@ require'navigator'.setup({
         }
       }
   })
+
+require("mason").setup()
+require("mason-lspconfig").setup()
 
 
 
