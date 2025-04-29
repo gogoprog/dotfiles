@@ -37,9 +37,11 @@ Plug 'tikhomirov/vim-glsl'
 Plug 'luochen1990/rainbow'
 Plug 'jeroenbourgois/vim-actionscript'
 " Plug 'codota/tabnine-nvim', { 'do': './dl_binaries.sh' }
+Plug 'hrsh7th/cmp-buffer'
 Plug 'hrsh7th/cmp-vsnip'
 Plug 'hrsh7th/vim-vsnip'
 Plug 'hrsh7th/nvim-cmp'
+Plug 'neovim/nvim-lspconfig'
 Plug 'hrsh7th/cmp-nvim-lsp'
 Plug 'tzachar/cmp-tabnine', { 'do': './install.sh' }
 
@@ -51,7 +53,6 @@ Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 
 Plug 'williamboman/mason.nvim'
 Plug 'williamboman/mason-lspconfig.nvim'
-Plug 'neovim/nvim-lspconfig'
 
 
 " Plug 'eandrju/cellular-automaton.nvim'
@@ -299,6 +300,10 @@ let g:VM_maps['i'] = '<Space>'
 
 lua << EOF
 
+
+  require("mason").setup()
+  require("mason-lspconfig").setup()
+
   local cmp = require'cmp'
 
   cmp.setup({
@@ -323,9 +328,10 @@ lua << EOF
               end, { "i", "s" }),
               }),
     sources = {
-    { name = 'nvim_lsp' },
-    { name = 'cmp_tabnine' },
-    },
+      { name = 'nvim_lsp' },
+      { name = 'cmp_tabnine' },
+      { name = 'buffer' },
+    }
   })
 
   local tabnine = require('cmp_tabnine.config')
@@ -508,11 +514,6 @@ require'navigator'.setup({
         }
       }
   })
-
-require("mason").setup()
-require("mason-lspconfig").setup()
-
-
 
 EOF
 
