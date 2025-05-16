@@ -54,6 +54,8 @@ Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'williamboman/mason.nvim'
 Plug 'williamboman/mason-lspconfig.nvim'
 
+Plug 'f-person/git-blame.nvim'
+
 
 " Plug 'eandrju/cellular-automaton.nvim'
 
@@ -514,6 +516,11 @@ require'navigator'.setup({
         }
       }
   })
+
+  require('gitblame').setup {
+       --Note how the `gitblame_` prefix is omitted in `setup`
+      enabled = false,
+  }
 
 EOF
 
