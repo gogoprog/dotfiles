@@ -200,7 +200,7 @@ map <F7> :MMMake<CR>
 map <F9> :MinGDBToggleBP<CR>
 
 function OpenExternal()
-  :execute ":silent !qtcreator -client %:p:" . line('.')
+  :execute ":silent !qtcreator -client " . shellescape(expand('%:p') . ':' . line('.'))
   :redraw!
 endfunction
 
