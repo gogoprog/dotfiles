@@ -300,7 +300,7 @@ end
 
 -- Win+r launcher: rofi run (any $PATH command, rofi keeps its own history),
 -- Ctrl+Tab switches to apps. Theme in run/launcher.rasi
-local run_launcher = "rofi -show run -modi run,drun -display-run 'run ❯' -display-drun 'app ❯'"
+local run_launcher = "rofi -show run -modi run,drun -display-run 'run ❯' -display-drun 'app ❯' -matching-negate-char '\\0'"
                   .. " -show-icons -theme " .. gears.filesystem.get_configuration_dir() .. "run/launcher.rasi"
 
 -- {{{ Key bindings
