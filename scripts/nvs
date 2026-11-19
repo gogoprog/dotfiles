@@ -1,0 +1,142 @@
+#!/usr/bin/env bash
+# nvs - neovim sessions named after a directory, each running in its own tmux session.
+#
+#   nvs [dir]                 open the session for dir (default: $PWD): attach to it
+#                             (or switch to it when already inside tmux), creating it
+#                             if needed; if it is already shown in a window, focus that
+#   nvs open FILE [LINE] [COL]
+#                             open FILE in the session whose directory contains it
+#                             (closest match wins) and show that session; if none,
+#                             create one at the file's git root (or its directory)
+#   nvs ls                    list running sessions
+#
+# nvim sockets live in $XDG_RUNTIME_DIR/nvs/: <name> is the socket, <name>.root holds
+# the session directory. The tmux session is named after the directory (~/code/foo).
+
+dir=${XDG_RUNTIME_DIR:-/tmp}/nvs
+mkdir -p "$dir"
+
+sock_for() { # root -> nvim socket path
+    local name=${1//\//%}
+    (( ${#dir} + ${#name} > 100 )) && name=$(basename "$1")-$(printf '%s' "$1" | md5sum | cut -c1-8)
+    printf '%s/%s' "$dir" "$name"
+}
+
+tname_for() { # root -> tmux session name (tmux forbids . and :)
+    local n=$1
+    [[ $n == "$HOME" || $n == "$HOME"/* ]] && n="~${n#"$HOME"}"
+    n=${n//./_}; printf '%s' "${n//:/_}"
+}
+
+rn() { timeout 3 nvim --clean --server "$@"; } # fast remote client (skips user config)
+alive() { [ -S "$1" ] && rn "$1" --remote-expr 1 >/dev/null 2>&1; }
+
+# print "root<TAB>socket" for every live session; clean up those whose nvim exited
+# (a session still starting up, nvim running but not listening yet, is skipped)
+sessions() {
+    local f s pid
+    for f in "$dir"/*.root; do
+        [ -e "$f" ] || continue
+        s=${f%.root}
+        pid=$(cat "$s.pid" 2>/dev/null)
+        if [ -z "$pid" ] || ! kill -0 "$pid" 2>/dev/null; then rm -f "$f" "$s" "$s.pid"
+        elif alive "$s"; then printf '%s\t%s\n' "$(<"$f")" "$s"; fi
+    done
+}
+
+vimstr() { printf "'%s'" "${1//\'/\'\'}"; } # vimscript single-quoted string
+
+new_term() { # run a command in a new urxvt window
+    if command -v urxvtc >/dev/null && urxvtc "$@" 2>/dev/null; then return; fi
+    setsid -f urxvt "$@" >/dev/null 2>&1
+}
+
+# raise the urxvt window of a tmux client showing this session; fails if there is none
+focus_client() {
+    local pid wid
+    for pid in $(tmux list-clients -t "=$1" -F '#{client_pid}' 2>/dev/null); do
+        wid=$(tr '\0' '\n' < "/proc/$pid/environ" 2>/dev/null | sed -n 's/^WINDOWID=//p')
+        [ -n "$wid" ] && xdotool windowactivate "$wid" 2>/dev/null && return 0
+    done
+    return 1
+}
+
+# show session from a terminal-less context (urxvt click): focus it or open a window
+show_detached() {
+    focus_client "$1" || new_term -e tmux attach-session -t "=$1"
+}
+
+# show session in the current terminal
+show_here() {
+    focus_client "$1" && return
+    if [ -n "$TMUX" ]; then tmux switch-client -t "=$1"
+    else exec tmux attach-session -t "=$1"; fi
+}
+
+# show the nvim behind a socket, wherever it runs (any tmux session, or a plain urxvt)
+# mode: here = attach/switch the current terminal if nothing shows it; else open a window
+show_sock() {
+    local sock=$1 mode=$2 pane sess wid
+    pane=$(rn "$sock" --remote-expr '$TMUX_PANE' 2>/dev/null)
+    if [ -n "$pane" ] && sess=$(tmux display-message -p -t "$pane" '#{session_name}' 2>/dev/null); then
+        tmux select-window -t "$pane" \; select-pane -t "$pane" 2>/dev/null
+        if [ "$mode" = here ]; then show_here "$sess"; else show_detached "$sess"; fi
+    else
+        wid=$(rn "$sock" --remote-expr '$WINDOWID' 2>/dev/null)
+        [ -n "$wid" ] && xdotool windowactivate "$wid" 2>/dev/null
+        [ "$mode" = here ] && echo "nvs: a session for this directory is already running"
+    fi
+    return 0
+}
+
+# create the tmux session running nvim for root (detached); extra args go to nvim
+create() {
+    local root=$1; shift
+    tmux new-session -d -s "$(tname_for "$root")" -c "$root" "$0" start "$root" "$@"
+}
+
+case $1 in
+ls)
+    sessions | cut -f1
+    ;;
+open)
+    file=$2 line=${3:-1} col=${4:-1}
+    [ -e "$file" ] || exit 1
+    file=$(realpath -- "$file")
+
+    best= bestsock=
+    while IFS=$'\t' read -r root sock; do
+        if [[ $file == "$root" || $file == "$root"/* || $root == / ]] && (( ${#root} > ${#best} )); then
+            best=$root bestsock=$sock
+        fi
+    done < <(sessions)
+
+    if [ -n "$bestsock" ]; then
+        rn "$bestsock" --remote-expr \
+            "execute(['drop ' . fnameescape($(vimstr "$file")), 'call cursor($line, $col)', 'normal! zz'])" >/dev/null
+        show_sock "$bestsock" detached
+    else
+        fdir=$file; [ -d "$fdir" ] || fdir=$(dirname -- "$file")
+        root=$(git -C "$fdir" rev-parse --show-toplevel 2>/dev/null) || root=$fdir
+        name=$(tname_for "$root")
+        tmux has-session -t "=$name" 2>/dev/null || create "$root" "+call cursor($line, $col)" "$file"
+        show_detached "$name"
+    fi
+    ;;
+start) # internal: runs inside the tmux pane
+    root=$2; shift 2
+    sock=$(sock_for "$root")
+    rm -f "$sock"
+    printf '%s' "$root" > "$sock.root"
+    echo $$ > "$sock.pid"   # exec keeps the pid, so this is nvim's pid
+    cd "$root" && exec nvim --listen "$sock" "$@"
+    ;;
+*)
+    root=$(realpath -- "${1:-$PWD}") || exit 1
+    sock=$(sock_for "$root")
+    if alive "$sock"; then show_sock "$sock" here; exit; fi
+    name=$(tname_for "$root")
+    tmux has-session -t "=$name" 2>/dev/null || create "$root" || exit 1
+    show_here "$name"
+    ;;
+esac

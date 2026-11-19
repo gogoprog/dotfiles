@@ -93,11 +93,7 @@ function tvim () {
 }
 
 function tvim_main () {
-    if [ "$TMUX" = "" ]; then
-        tmux new-session\; send-keys 'nvim --listen /tmp/nvim.main' Enter
-    else
-        nvim --listen /tmp/nvim.main
-    fi
+    nvs   # nvim session for $PWD, in its own tmux session (see ~/scripts/nvs)
 }
 
 bindkey -s '[11~' 'tvim'
@@ -121,3 +117,12 @@ function cd() {
 }
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+# Track cwd per urxvt window so clicked relative paths can be resolved (see ~/scripts/urxvt-open-path)
+if [ -n "$WINDOWID" ]; then
+    _urxvt_cwd_dir=${XDG_RUNTIME_DIR:-/tmp}/urxvt-cwd
+    mkdir -p $_urxvt_cwd_dir
+    _urxvt_track_cwd() { print -r -- $PWD > $_urxvt_cwd_dir/$(( WINDOWID )) }
+    autoload -Uz add-zsh-hook
+    add-zsh-hook precmd _urxvt_track_cwd
+fi

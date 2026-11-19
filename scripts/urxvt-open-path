@@ -1,0 +1,26 @@
+#!/usr/bin/env bash
+# Called by the urxvt matcher-hover extension when a file path is clicked.
+# Usage: urxvt-open-path <path> [line] [col]
+# Resolves the path against the clicked terminal's cwd and hands it to `nvs open`.
+
+path=$1 line=${2:-1} col=${3:-1}
+
+# strip trailing punctuation picked up from prose ("see foo.c.")
+path=${path%%[.,;:]}
+[ -n "$path" ] || exit 0
+
+# expand ~
+[[ $path == "~"* ]] && path=$HOME${path#\~}
+
+# resolve relative paths against the cwd of the shell in the clicked window
+if [[ $path != /* ]]; then
+    winid=$(xdotool getactivewindow 2>/dev/null)
+    cwdfile=${XDG_RUNTIME_DIR:-/tmp}/urxvt-cwd/$winid
+    cwd=$HOME
+    [ -n "$winid" ] && [ -r "$cwdfile" ] && cwd=$(<"$cwdfile")
+    path=$cwd/$path
+fi
+
+[ -e "$path" ] || exit 0
+
+exec "$HOME/scripts/nvs" open "$path" "$line" "$col"

@@ -24,16 +24,16 @@ urxvt*scrollBar:         false
 
 ! Extensions
 URxvt.perl-lib: /home/gogoprog/scripts
-URxvt.perl-ext: default,matcher,mark-yank-urls
+URxvt.perl-ext: default,matcher-hover,mark-yank-urls
 URxvt.underlineURLs: true
 URxvt.keysym.C-i: perl:mark-yank-urls:activate_mark_mode
 URxvt.urlLauncher: /usr/bin/xdg-open
 URxvt.url-launcher: /usr/bin/xdg-open
-URxvt.matcher.button: 1
-URxvt.matcher.rend.0: Uline
-/* URxvt.matcher.pattern.1:  \\B(/\\S+?):(\\d+)(?=:|$) */
-URxvt.matcher.pattern.1:  \\B(/\\S+?):(\\d+)
-URxvt.matcher.launcher.1: nvim --server /tmp/nvim.main --remote $1:$2
+URxvt.matcher-hover.button: 1
+URxvt.matcher-hover.rend.0: Uline
+! File paths (abs, ~/, ./, ../, rel/with/slash, bare name.ext) with optional :line:col -> nvim
+URxvt.matcher-hover.pattern.1:  (?<![\\w/.:~@+-])((?:~|\\.{1,2})?/[\\w.+@-]+(?:/[\\w.+@-]+)*|[\\w.+@-]+(?:/[\\w.+@-]+)+|[\\w+@-][\\w.+@-]*\\.[A-Za-z]\\w{0,9})(?::(\\d+))?(?::(\\d+))?
+URxvt.matcher-hover.launcher.1: /home/gogoprog/scripts/urxvt-open-path $1 $2 $3
 
 ! Keys
 urxvt.keysym.C-Tab: \033{
