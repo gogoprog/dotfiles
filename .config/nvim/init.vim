@@ -36,14 +36,12 @@ Plug 'tikhomirov/vim-glsl'
 " Plug 'alemigliardi/vim-combo'
 Plug 'luochen1990/rainbow'
 Plug 'jeroenbourgois/vim-actionscript'
-" Plug 'codota/tabnine-nvim', { 'do': './dl_binaries.sh' }
 Plug 'hrsh7th/cmp-buffer'
 Plug 'hrsh7th/cmp-vsnip'
 Plug 'hrsh7th/vim-vsnip'
 Plug 'hrsh7th/nvim-cmp'
 Plug 'neovim/nvim-lspconfig'
 Plug 'hrsh7th/cmp-nvim-lsp'
-Plug 'tzachar/cmp-tabnine', { 'do': './install.sh' }
 
 Plug 'wsdjeg/vim-fetch'
 
@@ -331,24 +329,39 @@ lua << EOF
               }),
     sources = {
       { name = 'nvim_lsp' },
-      { name = 'cmp_tabnine' },
       { name = 'buffer' },
     }
   })
 
-  local tabnine = require('cmp_tabnine.config')
+  -- Advertise nvim-cmp completion capabilities to all LSP servers
+  vim.lsp.config('*', {
+    capabilities = require('cmp_nvim_lsp').default_capabilities(),
+  })
 
-  tabnine:setup({
-    max_lines = 1000,
-    max_num_results = 20,
-    sort = true,
-    run_on_every_keystroke = true,
-    snippet_placeholder = '..',
-    ignored_file_types = {
-      -- default is not to ignore
-      -- uncomment to ignore in lua:
-      -- lua = true
-      }
+  -- clangd: drop diagnostics for files that have no compile database,
+  -- since its errors are just guesses there (completion/navigation still work).
+  -- Same lookup as clangd: each parent dir, and its build/ subdir.
+  local function has_compile_db(fname)
+    for dir in vim.fs.parents(fname) do
+      if vim.uv.fs_stat(dir .. '/compile_commands.json')
+        or vim.uv.fs_stat(dir .. '/compile_flags.txt')
+        or vim.uv.fs_stat(dir .. '/build/compile_commands.json') then
+        return true
+      end
+    end
+    return false
+  end
+
+  vim.lsp.config('clangd', {
+    handlers = {
+      ['textDocument/publishDiagnostics'] = function(err, result, ctx)
+        if result and result.uri and not has_compile_db(vim.uri_to_fname(result.uri)) then
+          result.diagnostics = {}
+        end
+        -- forward to the global handler (keeps navigator's diagnostics display)
+        return vim.lsp.handlers['textDocument/publishDiagnostics'](err, result, ctx)
+      end,
+    },
   })
 
 local key_maps = {
