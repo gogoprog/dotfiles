@@ -1,0 +1,29 @@
+/* Win+r launcher, colours from themes/ggp */
+* {
+    bg:      #111111;
+    bg-alt:  #1c1c1c;
+    fg:      #BBBBBB;
+    dim:     #666666;
+    accent:  #78A4FF;
+    border:  #93B6FF;
+    background-color: transparent;
+    text-color: @fg;
+    font: "Noto Sans Mono 11";
+}
+window {
+    width: 600px;
+    location: north;
+    y-offset: 60px;
+    background-color: @bg;
+    border: 1px;
+    border-color: @border;
+}
+mainbox { padding: 8px; spacing: 6px; }
+inputbar { children: [ prompt, entry ]; spacing: 8px; padding: 4px 6px; background-color: @bg-alt; }
+prompt { text-color: @accent; }
+entry { placeholder: "command…"; placeholder-color: @dim; }
+listview { lines: 12; scrollbar: false; spacing: 1px; }
+element { padding: 3px 6px; spacing: 8px; }
+element selected { background-color: @bg-alt; text-color: @accent; }
+element-icon { size: 1.1em; }
+element-text { text-color: inherit; highlight: bold #FFFF00; }

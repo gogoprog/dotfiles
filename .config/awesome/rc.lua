@@ -58,8 +58,8 @@ end
 
 -- {{{ Autostart windowless processes
 local function run_once(cmd)
-  findme = cmd
-  firstspace = cmd:find(" ")
+  local findme = cmd
+  local firstspace = cmd:find(" ")
   if firstspace then
      findme = cmd:sub(0, firstspace-1)
   end
@@ -77,7 +77,7 @@ local altkey       = "Mod1"
 local terminal     = "urxvtc" or "xterm"
 local editor       = os.getenv("EDITOR") or "nano" or "vi"
 local gui_editor   = "subl3"
-local browser      = "chromium"
+local browser      = "google-chrome-stable"
 
 awful.util.terminal = terminal
 awful.util.tagnames = { "1", "2", "3", "4", "5", "6", "7", "8", "9" }
@@ -138,7 +138,7 @@ awful.util.tasklist_buttons = awful.util.table.join(
                                                   c:raise()
                                               end
                                           end),
-                     awful.button({ }, 3, function()
+                     awful.button({ }, 3, (function()
                          local instance = nil
 
                          return function ()
@@ -149,7 +149,7 @@ awful.util.tasklist_buttons = awful.util.table.join(
                                  instance = awful.menu.clients({ theme = { width = 250 } })
                              end
                         end
-                     end),
+                     end)()),
                      awful.button({ }, 4, function ()
                                               awful.client.focus.byidx(1)
                                           end),
@@ -172,39 +172,88 @@ beautiful.init(theme_path)
 -- }}}
 
 -- {{{ Menu
+-- App icons (full colour)
+local function app_icon(name)
+    for _, p in ipairs({
+        "/usr/share/icons/hicolor/32x32/apps/" .. name .. ".png",
+        "/usr/share/icons/hicolor/scalable/apps/" .. name .. ".svg",
+        "/usr/share/icons/hicolor/16x16/apps/" .. name .. ".png",
+        "/usr/share/pixmaps/" .. name .. ".png",
+    }) do
+        if gears.filesystem.file_readable(p) then return p end
+    end
+end
+
+-- Adwaita symbolic icons are dark grey; recolour them to match the theme
+local function sym_icon(path)
+    path = "/usr/share/icons/Adwaita/symbolic/" .. path .. "-symbolic.svg"
+    if not gears.filesystem.file_readable(path) then return nil end
+    local surf = gears.surface.load_uncached_silently(path)
+    return surf and gears.color.recolor_image(surf, beautiful.fg_normal) or nil
+end
+
+local function in_term(cmd) return terminal .. " -e " .. cmd end
+
 local myawesomemenu = {
-    { "hotkeys", function() return false, hotkeys_popup.show_help end },
-    { "manual", terminal .. " -e man awesome" },
-    { "edit config", string.format("%s -e %s %s", terminal, editor, awesome.conffile) },
-    { "restart", awesome.restart },
-    { "quit", function() awesome.quit() end }
+    { "hotkeys",     function() return false, hotkeys_popup.show_help end, sym_icon("devices/input-keyboard") },
+    { "manual",      in_term("man awesome"),                                sym_icon("actions/help-about") },
+    { "edit config", string.format("%s -e %s %s", terminal, editor, awesome.conffile), sym_icon("legacy/utilities-terminal") },
+    { "restart",     awesome.restart,                                       sym_icon("actions/view-refresh") },
+    { "quit",        function() awesome.quit() end,                         sym_icon("actions/application-exit") },
 }
 
-local separator = { "-" }
-local pidgin_icon = "/usr/share/icons/hicolor/16x16/apps/pidgin.png"
-local chromium_icon = "/usr/share/icons/hicolor/16x16/apps/chromium.png"
-local fm_icon = "/usr/share/icons/gnome/16x16/places/folder.png"
-local term_icon = "/usr/share/icons/gnome/16x16/apps/openterm.png"
-local firefox_icon = "/usr/share/icons/hicolor/16x16/apps/firefox.png"
+local webmenu = {
+    { "firefox",       "firefox",              app_icon("firefox") },
+    { "google chrome", "google-chrome-stable", app_icon("google-chrome") },
+    { "qbittorrent",   "qbittorrent",          app_icon("qbittorrent") },
+}
+
+local filesmenu = {
+    { "home",      "thunar",                                  sym_icon("places/user-home") },
+    { "downloads", "thunar " .. os.getenv("HOME") .. "/Downloads", sym_icon("places/folder-download") },
+    { "documents", "thunar " .. os.getenv("HOME") .. "/Documents", sym_icon("places/folder-documents") },
+    { "pictures",  "thunar " .. os.getenv("HOME") .. "/Pictures",  sym_icon("places/folder-pictures") },
+}
+
+local mediamenu = {
+    { "vlc",  "vlc",  app_icon("vlc") },
+}
 
 local devmenu = {
-   { "gengine", "dev-gengine.sh" },
+    { "neovim",  in_term("nvim"),  app_icon("nvim") },
+    { "gengine", "dev-gengine.sh", sym_icon("categories/applications-utilities") },
 }
 
+local systemmenu = {
+    { "volume",   "pavucontrol",          app_icon("org.pulseaudio.pavucontrol") },
+    { "displays", "arandr",               sym_icon("devices/video-display") },
+    { "network",  "nm-connection-editor", sym_icon("devices/network-wireless") },
+    { "htop",     in_term("htop"),        app_icon("htop") },
+}
 
-awful.util.mymainmenu = awful.menu({ items = { { "awesome", myawesomemenu, beautiful.awesome_icon },
-                                    separator,
-                                    { "open terminal", terminal, term_icon },
-                                    separator,
-                                    { "pidgin", "pidgin", pidgin_icon },
-                                    { "chromium", "chromium", chromium_icon },
-                                    { "firefox", "firefox", firefox_icon },
-                                    separator,
-                                    { "pcmanfm-qt", "pcmanfm-qt", fm_icon },
-                                    separator,
-                                    { "dev start", devmenu },
-                                  }
-                        })
+local powermenu = {
+    { "suspend",  "systemctl suspend",  sym_icon("status/weather-clear-night") },
+    { "log out",  function() awesome.quit() end, sym_icon("actions/system-log-out") },
+    { "reboot",   "systemctl reboot",   sym_icon("actions/system-reboot") },
+    { "shutdown", "systemctl poweroff", sym_icon("actions/system-shutdown") },
+}
+
+awful.util.mymainmenu = awful.menu({
+    theme = { width = 170, height = 20 },
+    items = {
+        { "terminal", terminal,    sym_icon("legacy/utilities-terminal") },
+        { "firefox",  "firefox",   app_icon("firefox") },
+        { "chrome",   "google-chrome-stable", app_icon("google-chrome") },
+        { "thunar",   "thunar",    app_icon("org.xfce.thunar") },
+        { "web",      webmenu,     sym_icon("devices/network-wireless") },
+        { "files",    filesmenu,   sym_icon("places/folder") },
+        { "media",    mediamenu,   sym_icon("categories/applications-multimedia") },
+        { "dev",      devmenu,     sym_icon("categories/applications-utilities") },
+        { "system",   systemmenu,  sym_icon("categories/applications-system") },
+        { "awesome",  myawesomemenu, beautiful.awesome_icon },
+        { "power",    powermenu,   sym_icon("actions/system-shutdown") },
+    }
+})
 --menubar.utils.terminal = terminal -- Set the Menubar terminal for applications that require it
 -- }}}
 
@@ -249,11 +298,16 @@ local focus_under_mouse = function()
     return c
 end
 
+-- Win+r launcher: rofi run (any $PATH command, rofi keeps its own history),
+-- Ctrl+Tab switches to apps. Theme in run/launcher.rasi
+local run_launcher = "rofi -show run -modi run,drun -display-run 'run ❯' -display-drun 'app ❯'"
+                  .. " -show-icons -theme " .. gears.filesystem.get_configuration_dir() .. "run/launcher.rasi"
+
 -- {{{ Key bindings
 globalkeys = awful.util.table.join(
     -- Take a screenshot
     -- https://github.com/copycat-killer/dots/blob/master/bin/screenshot
-    awful.key({ altkey }, "p", function() os.execute("screenshot") end),
+    awful.key({ altkey }, "p", function() awful.spawn("screenshot") end),
 
     -- Hotkeys
     -- awful.key({ modkey,           }, "s",      
@@ -271,7 +325,7 @@ globalkeys = awful.util.table.join(
     awful.key({ altkey }, "Left", function () lain.util.tag_view_nonempty(-1) end,
               {description = "view  previous nonempty", group = "tag"}),
     awful.key({ altkey }, "Right", function () lain.util.tag_view_nonempty(1) end,
-              {description = "view  previous nonempty", group = "tag"}),
+              {description = "view  next nonempty", group = "tag"}),
 
     -- By direction client focus
     awful.key({ modkey }, "k",
@@ -329,8 +383,6 @@ globalkeys = awful.util.table.join(
     awful.key({ modkey, "Control" }, "j", function () awful.screen.focus_relative( 1) end,
               {description = "focus the next screen", group = "screen"}),
     awful.key({ modkey, "Control" }, "k", function () awful.screen.focus_relative(-1) end,
-              {description = "focus the previous screen", group = "screen"}),
-    awful.key({ modkey, "Control" }, "l", function () awful.screen.focus_relative(-1) end,
               {description = "focus the previous screen", group = "screen"}),
     awful.key({ modkey,           }, "u", awful.client.urgent.jumpto,
               {description = "jump to urgent client", group = "client"}),
@@ -410,9 +462,9 @@ globalkeys = awful.util.table.join(
 
 
     -- Copy primary to clipboard (terminals to gtk)
-    awful.key({ modkey }, "c", function () awful.spawn("xsel | xsel -i -b") end),
+    awful.key({ modkey }, "c", function () awful.spawn.with_shell("xsel | xsel -i -b") end),
     -- Copy clipboard to primary (gtk to terminals)
-    awful.key({ modkey }, "v", function () awful.spawn("xsel -b | xsel") end),
+    awful.key({ modkey }, "v", function () awful.spawn.with_shell("xsel -b | xsel") end),
 
     -- User programs
     awful.key({ modkey }, "e", function () awful.spawn(gui_editor) end),
@@ -430,8 +482,8 @@ globalkeys = awful.util.table.join(
 		end)
     --]]
     -- Prompt
-    awful.key({ modkey }, "r", function () awful.screen.focused().mypromptbox:run() end,
-              {description = "run prompt", group = "launcher"}),
+    awful.key({ modkey }, "r", function () awful.spawn.with_shell(run_launcher) end,
+              {description = "run launcher (rofi)", group = "launcher"}),
 
     awful.key({ modkey }, "x",
               function ()
@@ -445,14 +497,6 @@ globalkeys = awful.util.table.join(
               {description = "lua execute prompt", group = "awesome"})
     --]]
 )
-
-clientkeys = {}
-function clientkey(mod, key, func, desc)
-   local key = awful.key(mod, key, func, desc)
-   for k,v in pairs(key) do
-      tinsert(clientkeys, v)
-   end
-end
 
 clientkeys = awful.util.table.join(
     awful.key({ altkey, "Shift"   }, "m",      lain.util.magnify_client                         ),
@@ -595,8 +639,8 @@ local screen_lookup = {2, 1, 3}
 
 
 if screen:count() == 1 then
-  table.insert(awful.rules.rules, { rule = { class = "Chromium" }, properties = { screen = 1, tag = screen[1].tags[5]} })
-  table.insert(awful.rules.rules, { rule = { class = "Chromium", role = "pop-up" }, properties = { screen = 1, tag = screen[1].tags[5]} })
+  table.insert(awful.rules.rules, { rule = { class = "Google-chrome" }, properties = { screen = 1, tag = screen[1].tags[5]} })
+  table.insert(awful.rules.rules, { rule = { class = "Google-chrome", role = "pop-up" }, properties = { screen = 1, tag = screen[1].tags[5]} })
   table.insert(awful.rules.rules, { rule = { name = "livereload" }, properties = { screen = 1, tag = screen[1].tags[9]} })
   table.insert(awful.rules.rules, { rule = { name = "termDev" }, properties = { screen = 1, tag = screen[1].tags[6]} })
   table.insert(awful.rules.rules, { rule = { name = "vimDev" }, properties = { screen = 1, tag = screen[1].tags[4]} })
@@ -706,6 +750,6 @@ client.connect_signal("focus",
 client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_normal end)
 -- }}}
 
-os.execute("volumeicon &")
-os.execute("qbat &")
-os.execute("nm-applet &")
+run_once("volumeicon")
+run_once("qbat")
+run_once("nm-applet")
