@@ -105,7 +105,9 @@ vnoremap <c-s> <Esc>:w!<CR>
 map f <Plug>(easymotion-bd-w)
 map F :cd $PROJECT_ROOT <bar> Ack! <cword> 
 map ] :cd $PROJECT_ROOT <bar> Ack! 
-map <C-S-F> :cd $PROJECT_ROOT <bar> Ack! 
+" Live find in files: results update as you type (fzf + ag)
+command! -bang -nargs=* LiveGrep call fzf#vim#grep2('ag --nogroup --column --color --smart-case -f -- ', <q-args>, fzf#vim#with_preview(), <bang>0)
+map <C-S-F> :cd $PROJECT_ROOT <bar> LiveGrep<CR>
 noremap <c-f> /
 noremap E :NERDTreeFind<CR>
 map <C-P> :cd $PROJECT_ROOT <bar> :call fzf#vim#files('.', fzf#vim#with_preview())<CR>
