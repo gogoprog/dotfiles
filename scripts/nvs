@@ -28,7 +28,7 @@ tname_for() { # root -> tmux session name (tmux forbids . and :)
     n=${n//./_}; printf '%s' "${n//:/_}"
 }
 
-rn() { timeout 3 nvim --clean --server "$@"; } # fast remote client (skips user config)
+rn() { timeout 3 nvim --clean --headless --server "$@" </dev/null; } # fast remote client: no user config, no UI (a UI probes the terminal and stalls ~1s)
 alive() { [ -S "$1" ] && rn "$1" --remote-expr 1 >/dev/null 2>&1; }
 
 # print "root<TAB>socket" for every live session; clean up those whose nvim exited

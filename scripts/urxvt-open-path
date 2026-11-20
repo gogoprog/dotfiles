@@ -23,4 +23,7 @@ fi
 
 [ -e "$path" ] || exit 0
 
-exec "$HOME/scripts/nvs" open "$path" "$line" "$col"
+# immediate feedback: opening can take a moment (window focus / new session)
+notify-send -t 1500 -a nvs "Opening ${path/#$HOME/\~}:$line" &
+
+exec bash -x "$HOME/scripts/nvs" open "$path" "$line" "$col"

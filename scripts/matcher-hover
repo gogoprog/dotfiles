@@ -415,6 +415,7 @@ sub on_button_release {
       && (join "\x00", @$cmd) eq (join "\x00", $self->command_for ($row, $col))
    ) {
       if ($self->valid_button ($event)) {
+         $self->_flash ($row, $col);
          $self->exec_async (@$cmd);
       }
    }
@@ -567,6 +568,7 @@ sub on_focus_out    { $_[0]->_clear_hover }
 
 sub on_refresh_begin {
    my ($self) = @_;
+   $self->scr_xor_span (@{ $self->{flash} }, urxvt::RS_RVid) if $self->{flash};
    my $pos = $self->{hover_pos} or return ();
    my ($row, $col) = @$pos;
    return () if $row < $self->top_row || $row >= $self->nrow;
@@ -590,9 +592,26 @@ sub on_refresh_begin {
 
 sub on_refresh_end {
    my ($self) = @_;
-   my $saved = delete $self->{hover_saved} or return ();
-   $self->ROW_r ($_->[0], $_->[1]) for @$saved;
+   if (my $saved = delete $self->{hover_saved}) {
+      $self->ROW_r ($_->[0], $_->[1]) for @$saved;
+   }
+   $self->scr_xor_span (@{ $self->{flash} }, urxvt::RS_RVid) if $self->{flash};
    ()
+}
+
+# --- click feedback (added) --------------------------------------------------
+
+# briefly show the clicked match in reverse video
+sub _flash {
+   my ($self, $row, $col) = @_;
+   my ($match) = $self->find_matches ($row, $col) or return;
+   $self->{flash} = [@{$match}[0 .. 3]];
+   $self->want_refresh;
+   $self->{flash_timer} = urxvt::timer->new->after (0.4)->cb (sub {
+      delete $self->{flash};
+      delete $self->{flash_timer};
+      $self->want_refresh;
+   });
 }
 
 # find the rendition sub of the pattern that produced this match text

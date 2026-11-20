@@ -7,6 +7,6 @@ xmodmap ~/.xmodmap
 xbindkeys
 numlockx &
 serve-code &
-barrier &
+#barrier &
 guake &
 exec awesome
