@@ -549,7 +549,27 @@ if exists('g:neovide')
   :set guifont=Source\ Code\ Pro:h10
 endif
 
-if !empty($SSH_CLIENT)
-  :colorscheme neonwave
-endif
+" Different colorscheme when the terminal showing nvim is reached over SSH.
+" Inside tmux, $SSH_CLIENT is inherited from whoever started the server/pane and
+" never changes in a running nvim, so ask tmux: it refreshes the session's
+" SSH_CONNECTION on every attach ("-SSH_CONNECTION" when attached locally).
+function! s:OverSsh()
+  if !empty($TMUX)
+    return system('tmux show-environment -t ' . shellescape($TMUX_PANE) . ' SSH_CONNECTION 2>/dev/null') =~# '^SSH_CONNECTION='
+  endif
+  return !empty($SSH_CONNECTION) || !empty($SSH_CLIENT)
+endfunction
+
+let s:ssh_colors = -1
+function! s:UpdateSshColors()
+  let l:ssh = s:OverSsh()
+  if l:ssh == s:ssh_colors | return | endif   " only switch on change: keeps a project .vimrc scheme
+  let s:ssh_colors = l:ssh
+  exec 'colorscheme ' . (l:ssh ? 'neonwave' : 'solarized8_dark')
+  highlight LineNr ctermfg=grey ctermbg=none
+endfunction
+
+call s:UpdateSshColors()
+" FocusGained fires on tmux attach/switch (needs `focus-events on` in tmux)
+autocmd FocusGained,VimResume * call s:UpdateSshColors()
 

@@ -387,6 +387,18 @@ sub on_button_press {
       $self->valid_button ($event)
       && (my @exec = $self->command_for ($event->{row}, $event->{col}))
    ) {
+      # double-click (added): the first click on a match is left to urxvt as a normal
+      # click; a second one on the same match within 400ms launches it
+      my $key = join "\x00", @exec;
+      my $last = delete $self->{last_click};
+      unless ($last && $last->[1] eq $key && $event->{time} - $last->[0] < 400) {
+         $self->{last_click} = [$event->{time}, $key];
+         delete $self->{row};
+         delete $self->{col};
+         delete $self->{cmd};
+         return ();
+      }
+
       $self->{row} = $event->{row};
       $self->{col} = $event->{col};
       $self->{cmd} = \@exec;
